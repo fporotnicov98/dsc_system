@@ -21,6 +21,7 @@ import AppInbox from './views/inbox/AppInbox'
 import MatxCalendar from './views/calendar/MatxCalendar'
 import AddProjectComponent from './views/projected/NewProject'
 import CustomerLogs from './views/page-layouts/profile/layout/CustomerLogs'
+import ViewProjectComponent from './views/projected/ViewProject'
 
 const App = () => {
   const { stores } = configureStore();
@@ -42,7 +43,8 @@ const App = () => {
                     <MatxLayout>
                       <Route path={'/profile/profile-sa'} exact={true} render={() => <Profile />} />
                       <Route path={'/logs-control'} exact={true} render={() => <CustomerLogs />} />
-                      <Route path={'/projected/all-projects'} exact={true} render={() => <ProjectedComponent />} />
+                      <Route path={'/projects'} exact={true} render={() => <ProjectedComponent />} />
+                      <Route path={'/projects/:projectId'} render={() => <ViewProjectComponent />} />
                       <Route path={'/projected/add-project'} exact={true} render={() => <AddProjectComponent />} />
                       <Route path={'/scrum-board'} exact={true} render={() => <AppScrumBoard />} />
                       <Route path={'/dashboard/inventory-management'} exact={true} render={() => <InventoryManagement />} />

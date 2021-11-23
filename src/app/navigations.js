@@ -1,7 +1,7 @@
 export const navigations = [
     {
         name: 'Проекты',
-        path: '/projected/all-projects',
+        path: '/projects',
         icon: 'attach_money'
     },
     {

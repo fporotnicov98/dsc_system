@@ -14,6 +14,8 @@ class ProjectStore {
 
   @observable allProject = null
 
+  @observable project = []
+
   constructor({ AuthStore }) {
     makeObservable(this);
     this.AuthStore = AuthStore || {}
@@ -25,6 +27,10 @@ class ProjectStore {
 
   @action setProjects = (projects) => {
     this.allProject = projects
+  }
+
+  @action setProject = (project) => {
+    this.project = project
   }
 
   @action changeHandler = (event) => {
@@ -51,6 +57,26 @@ class ProjectStore {
     }
   }
 
+  getProject = async (projectId) => {
+    try {
+      const {
+        token,
+        request
+      } = this.AuthStore
+
+      const data = await request(`/api/project/${projectId}`, 'GET', null, {
+        Authorization: `Bearer ${token}`
+      })
+
+      runInAction(() => {
+        this.setProject(data)        
+      })
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   @action addProject = async () => {
     try {
       const {
@@ -58,10 +84,9 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-        await request('/api/project/addProject', 'POST', { ...this.projectData }, { Authorization: `Bearer ${token}` })
+      await request('/api/project/addProject', 'POST', { ...this.projectData }, { Authorization: `Bearer ${token}` })
 
-        history.push('/projected/all-projects')
-      
+      history.push('/projects')
 
     } catch (error) {
       console.log(error)

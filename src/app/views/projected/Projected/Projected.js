@@ -5,6 +5,7 @@ import history from 'history.js';
 import { MatxLoading } from 'app/components';
 import { inject } from 'mobx-react';
 import { toJS } from 'mobx';
+import { NavLink } from "react-router-dom";
 import dayjs from 'dayjs';
 
 @inject(({ ProjectStore }) => {
@@ -31,9 +32,9 @@ class Projected extends Component {
         options: {
           filter: true,
           customBodyRenderLite: (dataIndex) => (
-            <span className="ellipsis">
+            <NavLink to={`/projects/${allProject[dataIndex]._id}`} className="ellipsis">
               {allProject[dataIndex].projectName}
-            </span>
+            </NavLink>
           ),
         },
       },
