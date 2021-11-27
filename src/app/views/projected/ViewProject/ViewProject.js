@@ -1,22 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState, useEffect } from 'react'
 import {
-  Icon,
-  Button,
-  Divider,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  IconButton,
   Card,
 } from '@material-ui/core'
 import { Link, useParams } from 'react-router-dom'
-import { format } from 'date-fns'
-import clsx from 'clsx'
-import InvoiceEditor from 'app/views/invoice/InvoiceEditor';
-import InvoiceViewer from 'app/views/invoice/InvoiceViewer';
+import ProjectEdit from './ProjectEdit';
+import ProjectView from './ProjectView';
 
 const ViewProject = observer(({ ProjectStore }) => {
   const { projectId } = useParams()
@@ -38,11 +27,11 @@ const ViewProject = observer(({ ProjectStore }) => {
   return (
     <Card elevation={6} className="m-sm-30">
       {showInvoiceEditor ? (
-        <InvoiceEditor
+        <ProjectEdit
           toggleInvoiceEditor={toggleInvoiceEditor}
         />
       ) : (
-        <InvoiceViewer toggleInvoiceEditor={toggleInvoiceEditor} />
+        <ProjectView toggleInvoiceEditor={toggleInvoiceEditor} project={project} />
       )}
     </Card>
   )

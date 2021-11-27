@@ -5,6 +5,11 @@ export const navigations = [
         icon: 'attach_money'
     },
     {
+        name: 'Сотрудники',
+        icon: 'people',
+        path: '/staff'
+    },
+    {
         name: 'Команды',
         // path: '/teams',
         icon: 'people',
