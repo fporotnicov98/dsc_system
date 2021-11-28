@@ -1,75 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
     Icon,
     Button,
-    Divider,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
     IconButton,
-    Card,
+    ExpansionPanelSummary,
+    ExpansionPanelDetails
 } from '@material-ui/core'
-import { Link, useParams } from 'react-router-dom'
-import { getInvoiceById } from './InvoiceService'
-import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
+import dayjs from 'dayjs';
+import { ExpansionPanel, Typography } from '@material-ui/core'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
-    '@global': {
-        '@media print': {
-            'body, *, html': {
-                visibility: 'hidden',
-            },
-            '#print-area': {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '100%',
-                '& *': {
-                    visibility: 'visible',
-                },
-            },
-        },
-    },
-    invoiceViewer: {
-        '& h5': {
-            fontSize: 15,
-        },
-    },
+    root: {
+        backgroundColor: '#FFFFFF'
+    }
 }))
 
-const InvoiceViewer = ({ toggleInvoiceEditor }) => {
-    const [state, setState] = useState({})
+const ProjectView = (props) => {
 
-    const { id } = useParams()
+    const {
+        project,
+        toggleInvoiceEditor
+    } = props
+
     const classes = useStyles()
-
-    useEffect(() => {
-        if (id !== 'add')
-            getInvoiceById(id).then((res) => {
-                setState({ ...res.data })
-            })
-    }, [id])
-
-    let subTotalCost = 0
-    let {
-        orderNo,
-        buyer,
-        seller,
-        item: invoiceItemList = [],
-        status,
-        vat,
-        date,
-    } = state
 
     return (
         <div className={clsx('invoice-viewer py-4', classes.invoiceViewer)}>
             <div className="viewer_actions px-4 mb-5 flex items-center justify-between">
-                <Link to="/invoice/list">
+                <Link to="/projects">
                     <IconButton>
                         <Icon>arrow_back</Icon>
                     </IconButton>
@@ -81,134 +43,60 @@ const InvoiceViewer = ({ toggleInvoiceEditor }) => {
                         color="primary"
                         onClick={() => toggleInvoiceEditor()}
                     >
-                        Edit Invoice
+                        Изменить карточку проекта
                     </Button>
                 </div>
             </div>
 
-            <div id="print-area">
-                <div className="viewer__order-info px-4 mb-4 flex justify-between">
-                    <div>
-                        <h5 className="mb-2">Order Info</h5>
-                        <p className="mb-4">Order Number</p>
-                        <p className="mb-0"># {orderNo}</p>
-                    </div>
-                    <div className="text-right">
-                        <h5 className="font-normal mb-4 capitalize">
-                            <strong>Order status:</strong> {status}
-                        </h5>
-                        <h5 className="font-normal capitalize">
-                            <strong>Order date: </strong>{' '}
-                            <span>
-                                {date
-                                    ? format(
-                                        new Date(date).getTime(),
-                                        'MMMM dd, yyyy'
-                                    )
-                                    : ''}
-                            </span>
-                        </h5>
-                    </div>
+            <div className="px-7 mb-7 flex-column justify-between">
+                <div className="mb-4">
+                    <span>Наименование проекта: </span>
+                    <span>{project.projectName}</span>
                 </div>
-
-                <Divider />
-
-                <div className="viewer__billing-info px-4 py-5 flex justify-between">
-                    <div>
-                        <h5 className="mb-2">Bill From</h5>
-                        <p className="mb-4">{seller ? seller.name : null}</p>
-                        <p className="mb-0 whitespace-pre-wrap">
-                            {seller ? seller.address : null}
-                        </p>
-                    </div>
-                    <div className="text-right w-full">
-                        <h5 className="mb-2">Bill To</h5>
-                        <p className="mb-4">{buyer ? buyer.name : null}</p>
-                        <p className="mb-0 whitespace-pre-wrap">
-                            {buyer ? buyer.address : null}
-                        </p>
-                    </div>
-                    <div />
+                <div className="mb-4">
+                    <span>Git репозиторий: </span>
+                    <span>{project.repository}</span>
                 </div>
-
-                <Card className="mb-4" elevation={0}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell className="pl-sm-24">#</TableCell>
-                                <TableCell className="px-0">
-                                    Item Name
-                                </TableCell>
-                                <TableCell className="px-0">
-                                    Unit Price
-                                </TableCell>
-                                <TableCell className="px-0">Unit</TableCell>
-                                <TableCell className="px-0">Cost</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {invoiceItemList.map((item, index) => {
-                                subTotalCost += item.unit * item.price
-                                return (
-                                    <TableRow key={index}>
-                                        <TableCell
-                                            className="pl-sm-24 capitalize"
-                                            align="left"
-                                        >
-                                            {index + 1}
-                                        </TableCell>
-                                        <TableCell
-                                            className="pl-0 capitalize"
-                                            align="left"
-                                        >
-                                            {item.name}
-                                        </TableCell>
-                                        <TableCell
-                                            className="pl-0 capitalize"
-                                            align="left"
-                                        >
-                                            {item.price}
-                                        </TableCell>
-                                        <TableCell className="pl-0 capitalize">
-                                            {item.unit}
-                                        </TableCell>
-                                        <TableCell className="pl-0">
-                                            {item.unit * item.price}
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </Card>
-
-                <div className="px-4 flex justify-end">
-                    <div className="flex">
-                        <div className="pr-12">
-                            <p className="mb-4">Sub Total:</p>
-                            <p className="mb-4">Vat(%):</p>
-                            <strong>
-                                <p>Grand Total:</p>
-                            </strong>
-                        </div>
-                        <div>
-                            <p className="mb-4">{subTotalCost}</p>
-                            <p className="mb-4">{vat}</p>
-                            <p>
-                                <strong>
-                                    $
-                                    {
-                                        (subTotalCost +=
-                                            (subTotalCost * vat) / 100)
-                                    }
-                                </strong>
-                            </p>
-                        </div>
-                    </div>
+                <div className="mb-4">
+                    <span>Описание: </span>
+                    <span>{project.description}</span>
+                </div>
+                <div className="mb-4">
+                    <span>Дата создания: </span>
+                    <span>{dayjs(project.date).format('DD-MM-YYYY HH:mm')}</span>
+                </div>
+                <div className="mb-4">
+                    <span>Статус: </span>
+                    <span>{project.status}</span>
+                </div>
+                <div className="mb-4">
+                    <ExpansionPanel
+                        classes={classes.root}
+                    >
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography className={classes.heading}>
+                                Участники
+                            </Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                className={classes.button}
+                            >
+                                <Icon>add</Icon>
+                                <span className="ml-3">Добавить участника проекта</span>
+                            </Button>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
                 </div>
             </div>
         </div>
     )
 }
 
-export default InvoiceViewer
+export default ProjectView

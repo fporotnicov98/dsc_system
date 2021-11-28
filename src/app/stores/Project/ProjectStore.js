@@ -1,3 +1,4 @@
+import { api } from 'config';
 import history from 'history.js'
 import { action, makeObservable, observable, runInAction } from "mobx";
 
@@ -44,7 +45,7 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-      const data = await request('/api/project', 'GET', null, {
+      const data = await request(`${api}/api/project`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
 
@@ -64,7 +65,7 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-      const data = await request(`/api/project/${projectId}`, 'GET', null, {
+      const data = await request(`${api}/api/project/${projectId}`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
 
@@ -84,7 +85,7 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-      await request('/api/project/addProject', 'POST', { ...this.projectData }, { Authorization: `Bearer ${token}` })
+      await request(`${api}/api/project/addProject`, 'POST', { ...this.projectData }, { Authorization: `Bearer ${token}` })
 
       history.push('/projects')
 

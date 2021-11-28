@@ -6,6 +6,7 @@ import useSettings from 'app/hooks/useSettings'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     brand: {
+        backgroundImage: `url(./logodsc.jpeg)`,
         padding: '20px 18px 20px 29px',
     },
     hideOnCompact: {
@@ -24,6 +25,7 @@ const Brand = ({ children }) => {
             className={clsx('flex items-center justify-between', classes.brand)}
         >
             <div className="flex items-center">
+                <img src={'./logodsc.jpeg'} alt={''} />
                 <MatxLogo />
                 <span
                     className={clsx({

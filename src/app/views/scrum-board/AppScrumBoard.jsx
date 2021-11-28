@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
     Card,
     Grid,
@@ -9,13 +9,13 @@ import {
     IconButton,
     Icon,
 } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import { getAllBoard, addNewBoard } from '../../redux/actions/ScrumBoardActions'
-import { useDispatch, useSelector } from 'react-redux'
+// import { Link } from 'react-router-dom'
+// import { getAllBoard, addNewBoard } from '../../redux/actions/ScrumBoardActions'
+// import { useDispatch, useSelector } from 'react-redux'
 
 const AppScrumBoard = () => {
     const [open, setOpen] = useState(false)
-    const [textFieldValue, setTextFieldValue] = useState('')
+    // const [textFieldValue, setTextFieldValue] = useState('')
 
     // const { boardList = [] } = useSelector((state) => state.scrumboard)
     // const dispatch = useDispatch()
@@ -72,7 +72,7 @@ const AppScrumBoard = () => {
                                     className="mb-3"
                                     variant="outlined"
                                     label="Board Title"
-                                    value={textFieldValue}
+                                    // value={textFieldValue}
                                     autoFocus
                                     fullWidth
                                     InputProps={{

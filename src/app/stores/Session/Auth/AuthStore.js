@@ -1,6 +1,7 @@
 import { action, observable, makeObservable } from 'mobx';
 import history from 'history.js'
 import ProjectStore from '../../Project/ProjectStore'
+import {api} from 'config';
 
 class AuthStore {
   @observable loading = false
@@ -101,7 +102,7 @@ class AuthStore {
 
   @action loginHandler = async () => {
     try {
-      const data = await this.request('/api/auth/login', 'POST', { ...this.userData })
+      const data = await this.request(`${api}/api/auth/login`, 'POST', { ...this.userData })
       this.login(data.token, data.userId)
     } catch (e) {
       console.error('Что-то пошло не так')
@@ -111,7 +112,7 @@ class AuthStore {
   //register
   @action registerHandler = async () => {
     try {
-      const data = await this.request('/api/auth/register', 'POST', { ...this.userData })
+      const data = await this.request(`${api}/api/auth/register`, 'POST', { ...this.userData })
       this.setMessage(data.message)
       this.setOpen({ openSnack: true, variant: 'success' })
       history.push('/session/signin')
@@ -141,7 +142,7 @@ class AuthStore {
   getAuth = async (token) => {
     try {
       const data = await this.request(
-        '/api/auth/me',
+        `${api}/api/auth/me`,
         'GET',
         null,
         { 'Authorization': `Bearer ${token}` }

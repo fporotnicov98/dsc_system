@@ -1,7 +1,7 @@
-import { inject, Provider } from 'mobx-react';
+import { inject } from 'mobx-react';
 import React, { Component } from 'react';
 import ProjectStore from 'app/stores/Project/ProjectStore';
-import ViewProject from './ViewProject';
+import Project from './Project';
 
 @inject(('AuthStore'))
 
@@ -16,10 +16,7 @@ class ViewProjectComponent extends Component {
 
   render() {
     return (
-      // <Provider ProjectStore={this.ProjectStore}>
-        <ViewProject ProjectStore={this.ProjectStore} />
-      // </Provider>
-
+        <Project ProjectStore={this.ProjectStore} />
     )
   }
 }

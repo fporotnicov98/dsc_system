@@ -33,7 +33,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const InvoiceEditor = ({ isNewInvoice, toggleInvoiceEditor }) => {
+const ProjectEdit = ({ isNewInvoice, toggleInvoiceEditor }) => {
     const [isAlive, setIsAlive] = useState(true)
     const [state, setState] = useState(initialValues)
 
@@ -150,7 +150,7 @@ const InvoiceEditor = ({ isNewInvoice, toggleInvoiceEditor }) => {
     return (
         <div className={clsx('invoice-viewer py-4', classes.invoiceEditor)}>
             <ValidatorForm onSubmit={handleSubmit} onError={(errors) => null}>
-                <div className="viewer_actions px-4 flex justify-end">
+                <div className="px-4 flex justify-end">
                     <div className="mb-6">
                         <Button
                             type="button"
@@ -510,4 +510,4 @@ const initialValues = {
     loading: false,
 }
 
-export default InvoiceEditor
+export default ProjectEdit

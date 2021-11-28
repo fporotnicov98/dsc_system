@@ -13,3 +13,5 @@ export const auth0Config = {
     client_id: 'XmminWIs0S8gR3gIRBydYLWbF58x81vK',
     domain: 'matx.us.auth0.com',
 }
+
+export const api = 'https://dsc-system.herokuapp.com'

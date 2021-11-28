@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import {
   Card,
 } from '@material-ui/core'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ProjectEdit from './ProjectEdit';
 import ProjectView from './ProjectView';
 
