@@ -220,10 +220,6 @@ const Login = (props) => {
                     </ValidatorForm>
                 </div>
             </Card>
-            {message && window.notify({
-                variant: 'warning',
-                message
-            })}
         </div>
     )
 }

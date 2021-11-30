@@ -6,6 +6,7 @@ import {
 import { useParams } from 'react-router-dom'
 import ProjectEdit from './ProjectEdit';
 import ProjectView from './ProjectView';
+import { MatxLoading } from 'app/components';
 
 const ViewProject = observer(({ ProjectStore }) => {
   const { projectId } = useParams()
@@ -24,8 +25,12 @@ const ViewProject = observer(({ ProjectStore }) => {
     getProject(projectId);
   }, [getProject, projectId])
 
+  if (!project) {
+    return <MatxLoading />
+  }
+
   return (
-    <Card elevation={6} className="m-sm-30">
+    <Card elevation={6} className="m-15">
       {showInvoiceEditor ? (
         <ProjectEdit
           toggleInvoiceEditor={toggleInvoiceEditor}

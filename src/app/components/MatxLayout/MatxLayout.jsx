@@ -5,7 +5,7 @@ import { inject } from 'mobx-react'
 
 @inject(({AuthStore}) => {
     return {
-        userData: AuthStore.userData,
+        userData: AuthStore.user,
         logout: AuthStore.logout
     }
 })

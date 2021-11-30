@@ -18,16 +18,8 @@ const CustomerInfo = (props) => {
 
     const customerInfo = [
         {
-            title: 'Phone',
+            title: 'Телефон',
             value: userData.phone,
-        },
-        {
-            title: 'Country',
-            value: userData.country,
-        },
-        {
-            title: 'State/Region',
-            value: userData.state,
         }
     ]
 
@@ -36,7 +28,7 @@ const CustomerInfo = (props) => {
             <div className="flex-column items-center mb-6">
                 <Avatar
                     className="w-84 h-84"
-                    src="/assets/images/faces/10.jpg"
+                    // src="/assets/images/faces/10.jpg"
                 />
                 <h5 className="mt-4 mb-2">{`${userData.firstName} ${userData.lastName}`}</h5>
             </div>
@@ -48,9 +40,9 @@ const CustomerInfo = (props) => {
                         <TableCell className="pl-4">Email</TableCell>
                         <TableCell>
                             <div>{userData.email}</div>
-                            {/* <small className="px-1 py-2px bg-light-green text-green border-radius-4">
-                                EMAIL VERIFIED
-                            </small> */}
+                            <small className="px-1 py-2px bg-light-green text-green border-radius-4">
+                                Подтвержденный email
+                            </small>
                         </TableCell>
                     </TableRow>
                     {customerInfo.map((item, ind) => (
@@ -84,7 +76,7 @@ const CustomerInfo = (props) => {
                     <Icon className="mr-2" fontSize="small">
                         delete
                     </Icon>{' '}
-                    Delete Account
+                    Удалить аккаунт
                 </Button>
             </div>
         </Card>

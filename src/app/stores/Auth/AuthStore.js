@@ -1,7 +1,7 @@
 import { action, observable, makeObservable } from 'mobx';
 import history from 'history.js'
-import ProjectStore from '../../Project/ProjectStore'
-import {api} from 'config';
+import ProjectStore from '../Project/ProjectStore'
+import { api } from 'config';
 
 class AuthStore {
   @observable loading = false
@@ -16,15 +16,9 @@ class AuthStore {
 
   @observable isAuthenticated = false
 
-  @observable userData = {
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    password: '',
-    remember: true,
-    role: 'SA'
-  }
+  @observable userData = {}
+
+  @observable user = {}
 
   ProjectStore = {}
   storageName = 'userData'
@@ -63,11 +57,15 @@ class AuthStore {
     this.notify = notify
   }
 
+  @action setUser = (user) => {
+    this.user = user
+  }
+
   clearError = () => {
     this.setMessage(null)
   }
 
-  request = async (url, method, body = null, headers = {}) => {
+  request = async (url, method = 'GET', body = null, headers = {}, mode = 'no-cors') => {
     this.setLoading(true)
 
     try {
@@ -114,6 +112,10 @@ class AuthStore {
     try {
       const data = await this.request(`${api}/api/auth/register`, 'POST', { ...this.userData })
       this.setMessage(data.message)
+      window.notify({
+        variant: 'warning',
+        message: this.message
+      })
       this.setOpen({ openSnack: true, variant: 'success' })
       history.push('/session/signin')
     } catch (e) {
@@ -148,10 +150,15 @@ class AuthStore {
         { 'Authorization': `Bearer ${token}` }
       )
 
-      this.setUserData(data.user)
+      this.setUser(data.user)
+      this.setUserData({})
       this.setMessage(data.message)
       this.setOpen({ openSnack: true, variant: 'success' })
       this.setAuth(data.isAuth)
+      window.notify({
+        variant: 'warning',
+        message: this.message
+      })
     } catch (e) {
       console.log(e)
     }

@@ -5,7 +5,7 @@ import ProfileUser from './ProfileUser';
 
 @inject (({AuthStore}) => {
   return {
-    userData: AuthStore.userData,
+    userData: AuthStore.user,
     isAuthenticated: AuthStore.isAuthenticated
   }
 })

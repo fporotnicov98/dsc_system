@@ -1,6 +1,6 @@
 import {configure} from 'mobx';
 import Notify from '../stores/Notify';
-import Auth from '../stores/Session/Auth/AuthStore';
+import Auth from '../stores/Auth/AuthStore';
 
 configure({enforceActions: 'observed'});
 

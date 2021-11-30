@@ -36,7 +36,7 @@ class NewProject extends Component {
                         <div className="m-6">
                             <Grid container>
                                 <Grid item md={2} sm={4} xs={12}>
-                                    Ноименование продукта
+                                    Наименование продукта
                                 </Grid>
                                 <Grid item md={10} sm={8} xs={12}>
                                     <TextValidator

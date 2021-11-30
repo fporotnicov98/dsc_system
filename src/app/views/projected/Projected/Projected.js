@@ -11,13 +11,13 @@ import dayjs from 'dayjs';
 @inject(({ ProjectStore }) => {
   return {
     allProject: toJS(ProjectStore.allProject),
-    getAllProjects: ProjectStore.getAllProjects
+    getProjects: ProjectStore.getProjects
   }
 })
 
 class Projected extends Component {
   componentDidMount() {
-    this.props.getAllProjects()
+    this.props.getProjects()
   }
 
   render() {
@@ -131,10 +131,10 @@ class Projected extends Component {
     return (
       <div className="m-sm-30">
         <div className="overflow-auto">
-          <Button
-            variant="contained"
-            color="primary"
+        <Button
+          variant="outlined"
             className="mb-4"
+            color="primary"
             onClick={() => {
               history.push('/projected/add-project')
             }}

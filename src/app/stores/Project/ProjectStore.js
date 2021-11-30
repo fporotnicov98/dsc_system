@@ -38,14 +38,14 @@ class ProjectStore {
     this.setProjectData({ ...this.projectData, [event.target.name]: event.target.value })
   }
 
-  getAllProjects = async () => {
+  getProjects = async () => {
     try {
       const {
         token,
         request
       } = this.AuthStore
 
-      const data = await request(`${api}/api/project`, 'GET', null, {
+      const data = await request(`${api}/api/projects`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
 
@@ -65,7 +65,7 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-      const data = await request(`${api}/api/project/${projectId}`, 'GET', null, {
+      const data = await request(`${api}/api/projects/${projectId}`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
 
@@ -85,7 +85,7 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-      await request(`${api}/api/project/addProject`, 'POST', { ...this.projectData }, { Authorization: `Bearer ${token}` })
+      await request(`${api}/api/projects/addProject`, 'POST', { ...this.projectData }, { Authorization: `Bearer ${token}` })
 
       history.push('/projects')
 

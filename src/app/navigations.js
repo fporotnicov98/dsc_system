@@ -5,13 +5,13 @@ export const navigations = [
         icon: 'attach_money'
     },
     {
-        name: 'Сотрудники',
-        icon: 'people',
-        path: '/staff'
+        name: 'Пользователи',
+        icon: 'person',
+        path: '/users'
     },
     {
         name: 'Команды',
-        // path: '/teams',
+        path: '/teams',
         icon: 'people',
         children: [
             {
@@ -36,6 +36,11 @@ export const navigations = [
         name: 'Панель управления',
         icon: 'group_work',
         path: '/scrum-board'
+    },
+    {
+        name: 'CI/CD',
+        icon: 'all_inclusive',
+        path: '/ci-cd'
     },
     {
         name: 'Контроль запросов',

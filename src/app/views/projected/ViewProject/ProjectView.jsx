@@ -12,6 +12,7 @@ import clsx from 'clsx'
 import dayjs from 'dayjs';
 import { ExpansionPanel, Typography } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     root: {
@@ -53,9 +54,10 @@ const ProjectView = (props) => {
                     <span>Наименование проекта: </span>
                     <span>{project.projectName}</span>
                 </div>
-                <div className="mb-4">
-                    <span>Git репозиторий: </span>
-                    <span>{project.repository}</span>
+                <div className="mb-4 flex align-center">
+                    <span className="mr-2">Git репозиторий: </span>
+                    <a className="mr-2" style={{textDecoration: 'undeline', color: 'blue'}} href={project.repository}>{project.repository}</a>
+                    <CheckCircleOutlineIcon fontSize="small" color="primary" />
                 </div>
                 <div className="mb-4">
                     <span>Описание: </span>
@@ -67,7 +69,7 @@ const ProjectView = (props) => {
                 </div>
                 <div className="mb-4">
                     <span>Статус: </span>
-                    <span>{project.status}</span>
+                    <span className="text-green">{project.status}</span>
                 </div>
                 <div className="mb-4">
                     <ExpansionPanel
@@ -79,7 +81,7 @@ const ProjectView = (props) => {
                             id="panel1a-header"
                         >
                             <Typography className={classes.heading}>
-                                Участники
+                                Команды
                             </Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>

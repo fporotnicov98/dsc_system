@@ -4,7 +4,7 @@ import {
     Button,
     CircularProgress
 } from '@material-ui/core'
-import { MatxDivider, Snackbar } from 'app/components'
+import { MatxDivider} from 'app/components'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
@@ -45,9 +45,7 @@ const Register = (props) => {
         changeHandler,
         registerHandler,
         loading,
-        userData,
-        message,
-        notify
+        userData
     } = props;
 
     return (
@@ -175,19 +173,6 @@ const Register = (props) => {
                     </ValidatorForm>
                 </div>
             </Card>
-            {
-                message && (
-                    <Snackbar
-                        open={notify.openSnack}
-                        variant={notify.variant}
-                        message={message}
-                    />
-                )
-            }
-            {message && window.notify({
-                variant: 'warning',
-                message
-            })}
         </div>
     )
 }

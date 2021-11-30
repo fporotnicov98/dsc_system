@@ -3,6 +3,7 @@ import { MatxLogo } from '../index'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import useSettings from 'app/hooks/useSettings'
+import logo from './devops-removebg-preview.png'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     brand: {
@@ -25,15 +26,14 @@ const Brand = ({ children }) => {
             className={clsx('flex items-center justify-between', classes.brand)}
         >
             <div className="flex items-center">
-                <img src={'./logodsc.jpeg'} alt={''} />
-                <MatxLogo />
+                <img className="w-72" src={logo} alt={"logo"}/>
                 <span
                     className={clsx({
                         'text-18 ml-2 font-medium sidenavHoverShow': true,
                         [classes.hideOnCompact]: mode === 'compact',
                     })}
                 >
-                    DSC_system
+                    DSC System
                 </span>
             </div>
             <div
