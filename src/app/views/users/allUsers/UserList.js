@@ -47,7 +47,7 @@ const UserList = observer(({ UserStore }) => {
 
           return (
             <div className="flex items-center">
-              <Avatar className="w-48 h-48" />
+              <Avatar className="w-48 h-48 bg-primary" />
               <div className="ml-3">
                 <h5 className="my-0 text-15">{`${user?.lastName} ${user?.firstName}`}</h5>
               </div>
@@ -75,7 +75,7 @@ const UserList = observer(({ UserStore }) => {
     },
     {
       name: 'role',
-      label: 'Должность',
+      label: 'Роль',
       options: {
         filter: true,
       },

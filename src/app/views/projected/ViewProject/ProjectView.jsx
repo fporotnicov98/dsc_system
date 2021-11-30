@@ -3,14 +3,14 @@ import {
     Icon,
     Button,
     IconButton,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails
+    AccordionSummary,
+    AccordionDetails
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import dayjs from 'dayjs';
-import { ExpansionPanel, Typography } from '@material-ui/core'
+import { Accordion, Typography } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
@@ -72,10 +72,8 @@ const ProjectView = (props) => {
                     <span className="text-green">{project.status}</span>
                 </div>
                 <div className="mb-4">
-                    <ExpansionPanel
-                        classes={classes.root}
-                    >
-                        <ExpansionPanelSummary
+                    <Accordion>
+                        <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
@@ -83,8 +81,8 @@ const ProjectView = (props) => {
                             <Typography className={classes.heading}>
                                 Команды
                             </Typography>
-                        </ExpansionPanelSummary>
-                        <ExpansionPanelDetails>
+                        </AccordionSummary>
+                        <AccordionDetails>
                             <Button
                                 variant="outlined"
                                 color="primary"
@@ -93,8 +91,8 @@ const ProjectView = (props) => {
                                 <Icon>add</Icon>
                                 <span className="ml-3">Добавить участника проекта</span>
                             </Button>
-                        </ExpansionPanelDetails>
-                    </ExpansionPanel>
+                        </AccordionDetails>
+                    </Accordion>
                 </div>
             </div>
         </div>
