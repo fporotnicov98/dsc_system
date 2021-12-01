@@ -7,7 +7,7 @@ import {
     CircularProgress,
 } from '@material-ui/core'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
-import { MatxDivider, Snackbar } from 'app/components'
+import { MatxDivider } from 'app/components'
 import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
@@ -86,9 +86,7 @@ const Login = (props) => {
         loginHandler,
         loading,
         userData,
-        message,
         isAuthenticated,
-        notify
     } = props;
 
     if (isAuthenticated) {
@@ -102,15 +100,6 @@ const Login = (props) => {
                 classes.cardHolder
             )}
         >
-            {
-                message && (
-                    <Snackbar
-                        open={notify.openSnack}
-                        variant={notify.variant}
-                        message={message}
-                    />
-                )
-            }
             <Card className={classes.card}>
                 <div className="px-8 pt-8">
                     <Button

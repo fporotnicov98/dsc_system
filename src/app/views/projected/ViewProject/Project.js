@@ -12,7 +12,11 @@ const ViewProject = observer(({ ProjectStore }) => {
   const { projectId } = useParams()
   const {
     getProject,
-    project
+    project,
+    changeHandler,
+    updateProject,
+    projectData,
+    deleteProject
   } = ProjectStore
 
   const [showInvoiceEditor, setShowInvoiceEditor] = useState(false)
@@ -25,7 +29,7 @@ const ViewProject = observer(({ ProjectStore }) => {
     getProject(projectId);
   }, [getProject, projectId])
 
-  if (!project) {
+  if (!projectData) {
     return <MatxLoading />
   }
 
@@ -34,9 +38,18 @@ const ViewProject = observer(({ ProjectStore }) => {
       {showInvoiceEditor ? (
         <ProjectEdit
           toggleInvoiceEditor={toggleInvoiceEditor}
+          project={project}
+          changeHandler={changeHandler}
+          updateProject={updateProject}
+          projectData={projectData}
+          deleteProject={deleteProject}
         />
       ) : (
-        <ProjectView toggleInvoiceEditor={toggleInvoiceEditor} project={project} />
+        <ProjectView
+          toggleInvoiceEditor={toggleInvoiceEditor}
+          deleteProject={deleteProject}
+          project={projectData}
+        />
       )}
     </Card>
   )

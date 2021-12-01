@@ -9,13 +9,14 @@ class ProjectStore {
     projectName: '',
     repository: '',
     description: '',
-    date: new Date(),
-    status: 'создан'
+    createdDate: new Date(),
+    status: 'создан',
+    teams: [],
+    edited: '',
+    editedDate: ''
   }
 
   @observable allProject = null
-
-  @observable project = []
 
   constructor({ AuthStore }) {
     makeObservable(this);
@@ -28,10 +29,6 @@ class ProjectStore {
 
   @action setProjects = (projects) => {
     this.allProject = projects
-  }
-
-  @action setProject = (project) => {
-    this.project = project
   }
 
   @action changeHandler = (event) => {
@@ -70,7 +67,7 @@ class ProjectStore {
       })
 
       runInAction(() => {
-        this.setProject(data)        
+        this.setProjectData(data)        
       })
 
     } catch (e) {
@@ -91,6 +88,49 @@ class ProjectStore {
 
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  @action updateProject = async (projectId) => {
+    try {
+      const {
+        request
+      } = this.AuthStore
+
+      const data = await request(`${api}/api/projects/updateProject/${projectId}`, 'PUT')
+      
+      window.notify({
+        variant: 'success',
+        message: data.message
+      })
+    } catch (error) {
+      window.notify({
+        variant: 'success',
+        message: error
+      })
+    }
+  }
+
+  @action deleteProject = async (projectId) => {
+    try {
+      const {
+        request
+      } = this.AuthStore
+
+      const data = await request(`${api}/api/projects/deleteProject/${projectId}`, 'DELETE')
+      
+      window.notify({
+        variant: 'success',
+        message: data.message
+      })
+
+      history.push('/projects')
+
+    } catch (error) {
+      window.notify({
+        variant: 'success',
+        message: error
+      })
     }
   }
 }

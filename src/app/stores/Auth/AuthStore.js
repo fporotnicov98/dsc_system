@@ -6,10 +6,6 @@ import { api } from 'config';
 class AuthStore {
   @observable loading = false
   @observable message = null
-  @observable notify = {
-    openSnack: false,
-    variant: 'success'
-  }
 
   @observable token = null
   @observable userId = null
@@ -51,10 +47,6 @@ class AuthStore {
 
   @action setAuth = (auth) => {
     this.isAuthenticated = auth
-  }
-
-  @action setOpen = (notify) => {
-    this.notify = notify
   }
 
   @action setUser = (user) => {
@@ -127,10 +119,10 @@ class AuthStore {
     if (jwtToken) {
       this.setToken(jwtToken)
       this.setUserId(id)
-      this.getAuth(jwtToken)
       localStorage.setItem(this.storageName, JSON.stringify({
         userId: id, token: jwtToken,
       }))
+      this.getAuth(jwtToken)
     }
   }
 
@@ -153,7 +145,6 @@ class AuthStore {
       this.setUser(data.user)
       this.setUserData({})
       this.setMessage(data.message)
-      this.setOpen({ openSnack: true, variant: 'success' })
       this.setAuth(data.isAuth)
       window.notify({
         variant: 'warning',

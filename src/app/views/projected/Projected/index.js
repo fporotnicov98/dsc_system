@@ -1,4 +1,4 @@
-import { inject, Provider } from 'mobx-react';
+import { inject } from 'mobx-react';
 import React, { Component } from 'react';
 import Projected from './Projected';
 import ProjectStore from 'app/stores/Project/ProjectStore';
@@ -16,10 +16,7 @@ class ProjectedComponent extends Component {
 
   render() {
     return (
-      <Provider ProjectStore={this.ProjectStore}>
-        <Projected />
-      </Provider>
-
+      <Projected ProjectStore={this.ProjectStore} />
     )
   }
 }

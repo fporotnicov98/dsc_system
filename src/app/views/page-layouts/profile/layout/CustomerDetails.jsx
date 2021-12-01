@@ -75,7 +75,7 @@ const CustomerDetails = (props) => {
 
 const projectSummery = [
     {
-        title: 'Project Created',
+        title: 'Проектов создано',
         amount: 11,
     },
     {

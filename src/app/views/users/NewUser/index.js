@@ -2,6 +2,7 @@ import { inject } from 'mobx-react';
 import React, { Component } from 'react';
 import UserStore from 'app/stores/User/UserStore';
 import NewUser from './NewUser';
+import UpdateUser from './UpdateUser';
 
 @inject(('AuthStore'))
 
@@ -16,15 +17,28 @@ class NewUserComponent extends Component {
 
   render() {
     const {
-      open,
-      handleClose
+      openAdd,
+      openUpdate,
+      handleCloseAdd,
+      handleCloseUpdate,
+      action
     } = this.props
   
+    if (action === 'update') {
+      return (
+        <UpdateUser
+          UserStore={this.UserStore}
+          open={openUpdate}
+          handleClose={handleCloseUpdate}
+        />
+      )
+    }
+
     return (
         <NewUser
           UserStore={this.UserStore}
-          open={open}
-          handleClose={handleClose}
+          open={openAdd}
+          handleClose={handleCloseAdd}
         />
     )
   }

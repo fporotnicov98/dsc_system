@@ -50,6 +50,26 @@ class UserStore {
     }
   }
 
+  updateUser = async (userId) => {
+    try {
+      const {
+        request,
+        token
+      } = this.AuthStore
+
+      const data = await request(`${api}/api/auth/updateUser`, 'POST', { ...this.userInfo }, { Authorization: `Bearer ${token}` })
+      console.log(data.user)
+
+      window.notify({
+        variant: 'warning',
+        message: data.message
+      })
+
+    } catch (error) {
+      console.error('Что-то пошло не так', error)
+    }
+  }
+
   getUsers = async () => {
     try {
       const {

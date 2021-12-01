@@ -14,14 +14,10 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
   userInfo: {
     display: 'flex',
     width: '100%'
-  },
-  socialMedia: {
-    display: 'flex',
-    width: '50%'
-  },
+  }
 }))
 
-const NewUser = observer((props) => {
+const UpdateUser = observer((props) => {
   const {
     open,
     handleClose,
@@ -32,6 +28,8 @@ const NewUser = observer((props) => {
     }
   } = props
 
+  console.log(userInfo)
+
   const classes = useStyles()
 
   return (
@@ -40,7 +38,7 @@ const NewUser = observer((props) => {
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Добавить нового пользователя</DialogTitle>
+      <DialogTitle id="form-dialog-title">Изменить данные пользователя</DialogTitle>
       <DialogContent>
         <ValidatorForm onSubmit={() => registerUser()}>
           <div className={classes.userInfo}>
@@ -141,4 +139,4 @@ const NewUser = observer((props) => {
   )
 })
 
-export default NewUser
+export default UpdateUser

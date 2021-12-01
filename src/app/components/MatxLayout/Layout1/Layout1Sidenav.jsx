@@ -45,7 +45,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     userInfo: {},
 }))
 
-const Layout1Sidenav = () => {
+const Layout1Sidenav = (props) => {
     const theme = useTheme()
 
     const { settings } = useSettings()
@@ -73,7 +73,7 @@ const Layout1Sidenav = () => {
         <div className={classes.sidenav}>
             <div className="flex-column relative h-full">
                 <Brand />
-                <Sidenav />
+                <Sidenav userData={props.userData} />
             </div>
         </div>
     )

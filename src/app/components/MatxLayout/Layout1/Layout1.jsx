@@ -71,7 +71,7 @@ const Layout1 = (props) => {
         <div className={clsx('bg-default', layoutClasses)}>
             {showSidenav && sidenavMode !== 'close' && (
                 <SidenavTheme>
-                    <Layout1Sidenav />
+                    <Layout1Sidenav {...props} />
                 </SidenavTheme>
             )}
 

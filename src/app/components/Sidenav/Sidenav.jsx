@@ -26,7 +26,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const Sidenav = ({ children }) => {
+const Sidenav = (props) => {
     const classes = useStyles()
     const { settings, updateSettings } = useSettings()
 
@@ -46,6 +46,11 @@ const Sidenav = ({ children }) => {
         })
     }
 
+    const {
+        userData,
+        children
+    } = props
+
     return (
         <Fragment>
             <Scrollbar
@@ -53,7 +58,7 @@ const Sidenav = ({ children }) => {
                 className={clsx('relative px-4', classes.scrollable)}
             >
                 {children}
-                <MatxVerticalNav items={navigations} />
+                <MatxVerticalNav items={navigations} userData={userData} />
             </Scrollbar>
 
             <div

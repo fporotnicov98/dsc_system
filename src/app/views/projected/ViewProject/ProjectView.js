@@ -6,45 +6,55 @@ import {
     AccordionSummary,
     AccordionDetails
 } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
+import { Link, useParams } from 'react-router-dom'
 import dayjs from 'dayjs';
 import { Accordion, Typography } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-
-const useStyles = makeStyles(({ palette, ...theme }) => ({
-    root: {
-        backgroundColor: '#FFFFFF'
-    }
-}))
+import { MatxLoading } from 'app/components';
 
 const ProjectView = (props) => {
+    const { projectId } = useParams()
 
     const {
         project,
-        toggleInvoiceEditor
+        toggleInvoiceEditor,
+        deleteProject
     } = props
 
-    const classes = useStyles()
+    if (!project) {
+        return <MatxLoading />
+    }
 
     return (
-        <div className={clsx('invoice-viewer py-4', classes.invoiceViewer)}>
+        <div className="py-4">
             <div className="viewer_actions px-4 mb-5 flex items-center justify-between">
                 <Link to="/projects">
                     <IconButton>
                         <Icon>arrow_back</Icon>
                     </IconButton>
                 </Link>
-                <div>
+                <div className="flex items-center">
                     <Button
-                        className="mr-4 py-2"
+                        className="mr-4"
                         variant="contained"
                         color="primary"
                         onClick={() => toggleInvoiceEditor()}
                     >
                         Изменить карточку проекта
+                    </Button>
+                    <Button
+                        className="bg-error"
+                        variant="contained"
+                        onClick={() => {
+                            deleteProject(projectId)
+                            toggleInvoiceEditor()
+                        }}
+                    >
+                        <Icon className="mr-2" fontSize="small">
+                            delete
+                        </Icon>
+                        Удалить проект
                     </Button>
                 </div>
             </div>
@@ -56,7 +66,7 @@ const ProjectView = (props) => {
                 </div>
                 <div className="mb-4 flex align-center">
                     <span className="mr-2">Git репозиторий: </span>
-                    <a className="mr-2" style={{textDecoration: 'undeline', color: 'blue'}} href={project.repository}>{project.repository}</a>
+                    <a className="mr-2" style={{ textDecoration: 'undeline', color: 'blue' }} href={project.repository}>{project.repository}</a>
                     <CheckCircleOutlineIcon fontSize="small" color="primary" />
                 </div>
                 <div className="mb-4">
@@ -72,25 +82,20 @@ const ProjectView = (props) => {
                     <span className="text-green">{project.status}</span>
                 </div>
                 <div className="mb-4">
-                    <Accordion>
+                    <Accordion
+                        defaultExpanded
+                    >
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography className={classes.heading}>
+                            <Typography>
                                 Команды
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                className={classes.button}
-                            >
-                                <Icon>add</Icon>
-                                <span className="ml-3">Добавить участника проекта</span>
-                            </Button>
+
                         </AccordionDetails>
                     </Accordion>
                 </div>

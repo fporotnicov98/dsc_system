@@ -40,13 +40,16 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const MatxVerticalNav = ({ items }) => {
+const MatxVerticalNav = ({ items, userData }) => {
     const { settings } = useSettings()
     const { mode } = settings.layout1Settings.leftSidebar
     const classes = useStyles()
 
     const renderLevels = (data) => {
         return data.map((item, index) => {
+            if (item.role && !item?.role.includes(userData.role)) {
+                return null
+            }
             if (item.type === 'label')
                 return (
                     <p

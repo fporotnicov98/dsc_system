@@ -1,5 +1,4 @@
 import React from 'react'
-import { MatxLogo } from '../index'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import useSettings from 'app/hooks/useSettings'

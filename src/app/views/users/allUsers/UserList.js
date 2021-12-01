@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import Axios from 'axios'
+import React, { useEffect } from 'react'
 import MUIDataTable from 'mui-datatables'
 import { Avatar, Button, Grow, Icon, IconButton, TextField } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 import NewUserComponent from '../NewUser'
 import { observer } from 'mobx-react-lite'
-import { toJS } from 'mobx'
 import { MatxLoading } from 'app/components'
 
 const UserList = observer(({ UserStore }) => {
-  const [isAlive, setIsAlive] = useState(true)
-  const [userList, setUserList] = useState([])
-  const [open, setOpen] = React.useState(false)
+  const [openAdd, setOpen] = React.useState(false)
+  const [openUpdate, setOpenUpdate] = React.useState(false)
+  const [action, setAction] = React.useState(null)
   const {
     getUsers,
     users
   } = UserStore
 
-  const handleClickOpen = () => {
+  const handleClickOpenAdd = () => {
     setOpen(true)
+    setAction('add')
   }
 
-  const handleClose = () => {
+  const handleClickOpenUpdate = () => {
+    setOpenUpdate(true)
+    setAction('update')
+  }
+
+  const handleCloseAdd = () => {
     setOpen(false)
+  }
+
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false)
   }
 
   useEffect(() => {
     getUsers();
   }, [getUsers])
 
-  useEffect(() => {
-    Axios.get('/api/user/all').then(({ data }) => {
-      if (isAlive) setUserList(data)
-    })
-    return () => setIsAlive(false)
-  }, [isAlive])
-
   const columns = [
     {
-      name: 'name', // field name in the row object
-      label: 'Name', // column title that will be shown in table
+      name: 'name',
+      label: 'Name',
       options: {
         filter: true,
         customBodyRenderLite: (dataIndex) => {
@@ -60,24 +60,21 @@ const UserList = observer(({ UserStore }) => {
       name: 'email',
       label: 'Почта',
       options: {
-        filter: true,
-        // customBodyRenderLite: (dataIndex) => (
-        //   <span className="ellipsis">{userList[dataIndex].address}</span>
-        // ),
+        filter: true
       },
     },
     {
       name: 'phone',
       label: 'Номер телефона',
       options: {
-        filter: true,
+        filter: true
       },
     },
     {
       name: 'role',
       label: 'Роль',
       options: {
-        filter: true,
+        filter: true
       },
     },
     {
@@ -85,19 +82,14 @@ const UserList = observer(({ UserStore }) => {
       label: ' ',
       options: {
         filter: false,
-        customBodyRenderLite: (dataIndex) => (
+        customBodyRenderLite: () => (
           <div className="flex items-center">
             <div className="flex-grow"></div>
-            <Link to="/pages/new-customer">
-              <IconButton>
-                <Icon>edit</Icon>
-              </IconButton>
-            </Link>
-            <Link to="/pages/view-customer">
-              <IconButton>
-                <Icon>arrow_right_alt</Icon>
-              </IconButton>
-            </Link>
+            <IconButton
+              onClick={handleClickOpenUpdate}
+            >
+              <Icon>edit</Icon>
+            </IconButton>
           </div>
         ),
       },
@@ -114,14 +106,17 @@ const UserList = observer(({ UserStore }) => {
         <Button
           variant="outlined"
           color="primary"
-          onClick={handleClickOpen}
+          onClick={handleClickOpenAdd}
         >
           <Icon>add</Icon>
           <span className="ml-3">Добавить пользователя</span>
         </Button>
         <NewUserComponent
-          open={open}
-          handleClose={handleClose}
+          openAdd={openAdd}
+          openUpdate={openUpdate}
+          handleCloseUpdate={handleCloseUpdate}
+          handleCloseAdd={handleCloseAdd}
+          action={action}
         />
       </div>
       <div className="overflow-auto">

@@ -16,10 +16,16 @@ const CustomerInfo = (props) => {
         userData
     } = props
 
+    console.log(userData)
+
     const customerInfo = [
         {
             title: 'Телефон',
             value: userData.phone,
+        },
+        {
+            title: 'Роль',
+            value: userData.role
         }
     ]
 
