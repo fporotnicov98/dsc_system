@@ -16,8 +16,6 @@ const CustomerInfo = (props) => {
         userData
     } = props
 
-    console.log(userData)
-
     const customerInfo = [
         {
             title: 'Телефон',

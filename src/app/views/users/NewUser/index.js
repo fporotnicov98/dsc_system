@@ -1,47 +1,52 @@
-import { inject } from 'mobx-react';
-import React, { Component } from 'react';
-import UserStore from 'app/stores/User/UserStore';
+import React, { useEffect } from 'react';
 import NewUser from './NewUser';
 import UpdateUser from './UpdateUser';
+import { observer } from 'mobx-react-lite';
 
-@inject(('AuthStore'))
-
-class NewUserComponent extends Component {
-  constructor(props) {
-    super(props)
-
-    const { AuthStore } = props
-
-    this.UserStore = new UserStore({ AuthStore })
-  }
-
-  render() {
-    const {
-      openAdd,
-      openUpdate,
-      handleCloseAdd,
-      handleCloseUpdate,
-      action
-    } = this.props
-  
-    if (action === 'update') {
-      return (
-        <UpdateUser
-          UserStore={this.UserStore}
-          open={openUpdate}
-          handleClose={handleCloseUpdate}
-        />
-      )
+const NewUserComponent = observer((props) => {
+  const {
+    openAdd,
+    openUpdate,
+    handleCloseAdd,
+    handleCloseUpdate,
+    action,
+    updateUserId,
+    getUserById,
+    UserStore: {
+      userHandler,
+      updateUser,
+      registerUser,
+      userInfo
     }
+  } = props
 
+  useEffect(() => {
+    getUserById(updateUserId);
+  }, [getUserById, updateUserId])
+
+  if (action === 'update') {
     return (
-        <NewUser
-          UserStore={this.UserStore}
-          open={openAdd}
-          handleClose={handleCloseAdd}
-        />
+      <UpdateUser
+        open={openUpdate}
+        handleClose={handleCloseUpdate}
+        updateUserId={updateUserId}
+        getUserById={getUserById}
+        userHandler={userHandler}
+        updateUser={updateUser}
+        userInfo={userInfo}
+      />
     )
   }
-}
+
+  return (
+    <NewUser
+      open={openAdd}
+      handleClose={handleCloseAdd}
+      userHandler={userHandler}
+      registerUser={registerUser}
+      userInfo={userInfo}
+    />
+  )
+})
 
 export default NewUserComponent;

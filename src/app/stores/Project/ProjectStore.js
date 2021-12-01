@@ -97,7 +97,7 @@ class ProjectStore {
         request
       } = this.AuthStore
 
-      const data = await request(`${api}/api/projects/updateProject/${projectId}`, 'PUT')
+      const data = await request(`${api}/api/projects/updateProject/${projectId}`, 'PUT', { ...this.projectData })
       
       window.notify({
         variant: 'success',

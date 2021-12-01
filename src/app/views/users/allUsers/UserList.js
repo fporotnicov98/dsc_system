@@ -9,9 +9,11 @@ const UserList = observer(({ UserStore }) => {
   const [openAdd, setOpen] = React.useState(false)
   const [openUpdate, setOpenUpdate] = React.useState(false)
   const [action, setAction] = React.useState(null)
+  const [updateUserId, setUpdateUserId] = React.useState(null)
   const {
     getUsers,
-    users
+    users,
+    getUserById
   } = UserStore
 
   const handleClickOpenAdd = () => {
@@ -34,7 +36,7 @@ const UserList = observer(({ UserStore }) => {
 
   useEffect(() => {
     getUsers();
-  }, [getUsers])
+  }, [getUsers, users])
 
   const columns = [
     {
@@ -82,16 +84,23 @@ const UserList = observer(({ UserStore }) => {
       label: ' ',
       options: {
         filter: false,
-        customBodyRenderLite: () => (
-          <div className="flex items-center">
-            <div className="flex-grow"></div>
-            <IconButton
-              onClick={handleClickOpenUpdate}
-            >
-              <Icon>edit</Icon>
-            </IconButton>
-          </div>
-        ),
+        customBodyRenderLite: (dataIndex) => {
+          let user = users[dataIndex]
+
+          return (
+            <div className="flex items-center">
+              <div className="flex-grow"></div>
+              <IconButton
+                onClick={() => {
+                  handleClickOpenUpdate()
+                  setUpdateUserId(user._id)
+                }}
+              >
+                <Icon>edit</Icon>
+              </IconButton>
+            </div>
+          )
+        }
       },
     },
   ]
@@ -117,6 +126,9 @@ const UserList = observer(({ UserStore }) => {
           handleCloseUpdate={handleCloseUpdate}
           handleCloseAdd={handleCloseAdd}
           action={action}
+          updateUserId={updateUserId}
+          getUserById={getUserById}
+          UserStore={UserStore}
         />
       </div>
       <div className="overflow-auto">

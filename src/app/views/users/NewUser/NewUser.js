@@ -25,11 +25,9 @@ const NewUser = observer((props) => {
   const {
     open,
     handleClose,
-    UserStore: {
-      userHandler,
-      registerUser,
-      userInfo
-    }
+    userHandler,
+    registerUser,
+    userInfo
   } = props
 
   const classes = useStyles()

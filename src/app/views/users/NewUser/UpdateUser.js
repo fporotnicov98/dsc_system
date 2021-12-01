@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Grid,
   Button,
@@ -8,7 +8,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
 import { Dialog } from '@material-ui/core'
-import { observer } from 'mobx-react-lite'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
   userInfo: {
@@ -17,20 +16,26 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
   }
 }))
 
-const UpdateUser = observer((props) => {
+const UpdateUser = (props) => {
   const {
     open,
     handleClose,
-    UserStore: {
-      userHandler,
-      registerUser,
-      userInfo
-    }
+    updateUserId,
+    getUserById,
+    userHandler,
+    updateUser,
+    userInfo
   } = props
 
-  console.log(userInfo)
+  useEffect(() => {
+    getUserById(updateUserId);
+  }, [getUserById, updateUserId])
 
   const classes = useStyles()
+
+  if (!userInfo) {
+    return null
+  }
 
   return (
     <Dialog
@@ -40,7 +45,7 @@ const UpdateUser = observer((props) => {
     >
       <DialogTitle id="form-dialog-title">Изменить данные пользователя</DialogTitle>
       <DialogContent>
-        <ValidatorForm onSubmit={() => registerUser()}>
+        <ValidatorForm onSubmit={() => updateUser(updateUserId)}>
           <div className={classes.userInfo}>
             <Grid container spacing={3} alignItems="center">
               <Grid item md={4} sm={4} xs={12}>
@@ -53,7 +58,6 @@ const UpdateUser = observer((props) => {
                   name="firstName"
                   size="small"
                   fullWidth
-                  required
                   variant="outlined"
                   value={userInfo.firstName || ''}
                   onChange={userHandler}
@@ -67,7 +71,6 @@ const UpdateUser = observer((props) => {
                   label="Фамилия"
                   name="lastName"
                   fullWidth
-                  required
                   size="small"
                   variant="outlined"
                   value={userInfo.lastName || ''}
@@ -82,7 +85,6 @@ const UpdateUser = observer((props) => {
                   label="Телефон"
                   name="phone"
                   fullWidth
-                  required
                   size="small"
                   variant="outlined"
                   value={userInfo.phone || ''}
@@ -98,26 +100,9 @@ const UpdateUser = observer((props) => {
                   name="email"
                   size="small"
                   fullWidth
-                  required
                   type="email"
                   variant="outlined"
                   value={userInfo.email || ''}
-                  onChange={userHandler}
-                />
-              </Grid>
-              <Grid item md={4} sm={4} xs={12}>
-                Пароль
-              </Grid>
-              <Grid item md={8} sm={8} xs={12}>
-                <TextValidator
-                  label="Пароль"
-                  name="password"
-                  type='password'
-                  size="small"
-                  fullWidth
-                  required
-                  variant="outlined"
-                  value={userInfo.password || ''}
                   onChange={userHandler}
                 />
               </Grid>
@@ -130,13 +115,13 @@ const UpdateUser = observer((props) => {
               type="submit"
               onClick={() => handleClose()}
             >
-              Создать
+              Обновить
             </Button>
           </div>
         </ValidatorForm>
       </DialogContent>
     </Dialog>
   )
-})
+}
 
 export default UpdateUser

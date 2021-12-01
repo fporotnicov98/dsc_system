@@ -18,8 +18,6 @@ const Projected = observer(({ ProjectStore }) => {
     getProjects();
   }, [getProjects])
 
-  console.log(allProject)
-
   const columns = [
     {
       name: 'projectName',

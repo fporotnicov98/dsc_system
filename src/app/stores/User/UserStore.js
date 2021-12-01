@@ -1,8 +1,7 @@
 import { api } from "config"
+import history from "history.js";
 import { makeObservable, observable, action, runInAction } from "mobx";
 import ProjectStore from "../Project/ProjectStore";
-
-
 class UserStore {
   @observable userInfo = {}
   @observable users = null
@@ -30,7 +29,7 @@ class UserStore {
     this.setUserInfo({ ...this.userInfo, [event.target.name]: event.target.value })
   }
 
-  registerUser = async () => {
+  @action registerUser = async () => {
     try {
       const {
         request,
@@ -50,27 +49,47 @@ class UserStore {
     }
   }
 
-  updateUser = async (userId) => {
+  @action updateUser = async (userId) => {
     try {
       const {
-        request,
-        token
+        request
       } = this.AuthStore
 
-      const data = await request(`${api}/api/auth/updateUser`, 'POST', { ...this.userInfo }, { Authorization: `Bearer ${token}` })
-      console.log(data.user)
+      const data = await request(`${api}/api/users/updateUser/${userId}`, 'PUT', { ...this.userInfo })
 
       window.notify({
-        variant: 'warning',
+        variant: 'success',
         message: data.message
       })
 
+      history.push('/users')
     } catch (error) {
-      console.error('Что-то пошло не так', error)
+      window.notify({
+        variant: 'success',
+        message: error
+      })
     }
   }
 
-  getUsers = async () => {
+  @action getUserById = async (userId) => {
+    try {
+      const {
+        token,
+        request
+      } = this.AuthStore
+
+      const data = await request(`${api}/api/users/${userId}`, 'GET', null, {
+        Authorization: `Bearer ${token}`
+      })
+
+      this.setUserInfo(data)
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  @action getUsers = async () => {
     try {
       const {
         token,
