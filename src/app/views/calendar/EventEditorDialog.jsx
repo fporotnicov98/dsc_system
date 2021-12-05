@@ -63,7 +63,7 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
             fullWidth={true}
         >
             <div className="flex justify-between items-center pl-4 pr-2 py-2 bg-primary">
-                <h4 className="m-0 text-white">Add Events</h4>
+                <h4 className="m-0 text-white">Добавить событие</h4>
                 <IconButton onClick={handleClose}>
                     <Icon className="text-white">clear</Icon>
                 </IconButton>
@@ -73,7 +73,7 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
                 <ValidatorForm onSubmit={handleFormSubmit}>
                     <TextValidator
                         className="mb-6 w-full"
-                        label="Title"
+                        label="Название"
                         onChange={handleChange}
                         type="text"
                         name="title"
@@ -88,7 +88,7 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
                                 <DateTimePicker
                                     margin="none"
                                     id="start-date"
-                                    label="Start date"
+                                    label="Начало"
                                     inputVariant="standard"
                                     type="text"
                                     autoOk={true}
@@ -105,7 +105,7 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
                                 <DateTimePicker
                                     margin="none"
                                     id="end-date"
-                                    label="End date"
+                                    label="Конец"
                                     inputVariant="standard"
                                     type="text"
                                     autoOk={true}
@@ -121,7 +121,7 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
                     <div className="py-2" />
                     <TextValidator
                         className="mb-6 w-full"
-                        label="Location"
+                        label="Место"
                         onChange={handleChange}
                         type="text"
                         name="location"
@@ -132,7 +132,7 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
 
                     <TextValidator
                         className="mb-9 w-full"
-                        label="Note"
+                        label="Описание"
                         onChange={handleChange}
                         type="text"
                         name="note"
@@ -149,11 +149,11 @@ const EventEditorDialog = ({ event = {}, open, handleClose }) => {
                             color="primary"
                             type="submit"
                         >
-                            Save
+                            Сохранить
                         </Button>
                         <Button onClick={handleDeleteEvent}>
                             <Icon className="mr-2 align-middle">delete</Icon>
-                            Delete
+                            Удалить
                         </Button>
                     </div>
                 </ValidatorForm>

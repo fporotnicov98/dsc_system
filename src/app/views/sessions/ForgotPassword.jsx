@@ -10,7 +10,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
         background: '#1A2038',
     },
     card: {
-        maxWidth: 800,
+        minWidth: 400,
         borderRadius: 12,
         margin: '1rem',
     },
@@ -42,16 +42,7 @@ const ForgotPassword = () => {
         >
             <Card className={classes.card}>
                 <Grid container>
-                    <Grid item lg={5} md={5} sm={5} xs={12}>
-                        <div className="p-8 flex justify-center items-center h-full">
-                            <img
-                                className="w-full"
-                                src="/assets/images/illustrations/dreamer.svg"
-                                alt=""
-                            />
-                        </div>
-                    </Grid>
-                    <Grid item lg={7} md={7} sm={7} xs={12}>
+                    <Grid item lg={12} md={12} sm={12} xs={12}>
                         <div className="p-8 h-full bg-light-gray relative">
                             <ValidatorForm onSubmit={handleFormSubmit}>
                                 <TextValidator
@@ -69,18 +60,18 @@ const ForgotPassword = () => {
                                         'email is not valid',
                                     ]}
                                 />
-                                <div className="flex items-center">
+                                <div className="flex items-center justify-between">
                                     <Button
                                         variant="contained"
                                         color="primary"
                                         type="submit"
                                     >
-                                        Reset Password
+                                        Восстановить пароль
                                     </Button>
-                                    <span className="ml-4 mr-2">or</span>
+                                    <span className="ml-4 mr-2">или</span>
                                     <Link to="/session/signin">
                                         <Button className="capitalize">
-                                            Sign in
+                                            Вход
                                         </Button>
                                     </Link>
                                 </div>

@@ -115,12 +115,12 @@ const AppChat = () => {
     return (
         <div className="m-sm-30">
             <div className="mb-sm-30">
-                <Breadcrumb routeSegments={[{ name: 'Chat' }]} />
+                <Breadcrumb routeSegments={[{ name: 'Чат' }]} />
             </div>
-            <Card elevation={6}>
+            <Card elevation={6} className="min-h-full">
                 <MatxSidenavContainer>
                     <MatxSidenav
-                        width="230px"
+                        width="260px"
                         open={open}
                         toggleSidenav={toggleSidenav}
                     >

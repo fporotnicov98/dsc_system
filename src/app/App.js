@@ -23,6 +23,8 @@ import AddProjectComponent from './views/projected/NewProject'
 import CustomerLogs from './views/page-layouts/profile/layout/CustomerLogs'
 import ViewProjectComponent from './views/projected/ViewProject'
 import UsersComponent from './views/users/allUsers'
+import TeamsComponent from './views/teams/all'
+import DevTeamsComponent from './views/teams/dev'
 
 const App = () => {
   const { stores } = configureStore();
@@ -51,6 +53,8 @@ const App = () => {
 
                       <Route path={'/users'} exact={true} render={() => <UsersComponent />} />
                       {/* <Route path={'/users/add-user'} exact={true} render={() => <NewUserComponent />} /> */}
+                      <Route path={'/teams/all'} exact={true} render={() => <TeamsComponent />} />
+                      <Route path={'/teams/dev'} exact={true} render={() => <DevTeamsComponent />} />
 
                       <Route path={'/scrum-board'} exact={true} render={() => <AppScrumBoard />} />
                       <Route path={'/dashboard/inventory-management'} exact={true} render={() => <InventoryManagement />} />

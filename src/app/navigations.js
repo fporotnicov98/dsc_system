@@ -13,7 +13,6 @@ export const navigations = [
     },
     {
         name: 'Команды',
-        path: '/teams',
         icon: 'people',
         role: ['SA'],
         children: [
@@ -22,15 +21,15 @@ export const navigations = [
                 path: '/teams/all'
             },
             {
-                name: 'Developers',
+                name: 'Разработка',
                 path: '/teams/dev'
             },
             {
-                name: 'Security',
+                name: 'Безопасность',
                 path: '/teams/sec',
             },
             {
-                name: 'Operations',
+                name: 'Администрирование',
                 path: '/teams/ops'
             }
         ]

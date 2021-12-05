@@ -21,7 +21,7 @@ import { useState } from 'react'
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     chatContainer: {
         background: 'rgba(0, 0, 0, 0.05)',
-        height: 450,
+        height: 650,
     },
 }))
 
@@ -96,7 +96,7 @@ const ChatContainer = ({
                 {currentChatRoom === '' && (
                     <div className="flex-column justify-center items-center h-full">
                         <EmptyMessage />
-                        <p>Select a contact</p>
+                        <p>Выберите контакт</p>
                     </div>
                 )}
                 {messageList.map((message, index) => (
@@ -136,7 +136,7 @@ const ChatContainer = ({
             {currentChatRoom !== '' && (
                 <div className="flex items-center px-4 py-2">
                     <TextField
-                        label="Type your message here*"
+                        label="Введите сообщение..."
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         onKeyUp={sendMessageOnEnter}

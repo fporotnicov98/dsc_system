@@ -66,7 +66,7 @@ const Register = (props) => {
                             src="/assets/images/logos/google.svg"
                             alt=""
                         />
-                        Sign Up With Google
+                        Регистрация
                     </Button>
                 </div>
                 <MatxDivider className="mt-6 px-8" text="Или" />

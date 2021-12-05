@@ -111,7 +111,7 @@ const Login = (props) => {
                             src="/assets/images/logos/google.svg"
                             alt=""
                         />
-                        Sign In With Google
+                        Вход
                     </Button>
                 </div>
                 <MatxDivider className="mt-6 px-8" text="Или" />

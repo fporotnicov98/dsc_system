@@ -99,11 +99,11 @@ const MatxCalendar = () => {
     return (
         <div className="m-sm-30">
             <div className="mb-sm-30">
-                <Breadcrumb routeSegments={[{ name: 'Calendar' }]} />
+                <Breadcrumb routeSegments={[{ name: 'Календарь' }]} />
             </div>
 
             <Button
-                className="mb-4"
+                className="mb-4 text-white-secondary"
                 variant="contained"
                 color="secondary"
                 onClick={() =>
@@ -114,7 +114,7 @@ const MatxCalendar = () => {
                     })
                 }
             >
-                Add Event
+                Добавить событие
             </Button>
             <div
                 className={clsx('h-full-screen flex-column', classes.calendar)}
