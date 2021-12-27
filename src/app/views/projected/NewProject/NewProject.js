@@ -4,10 +4,12 @@ import {
     Divider,
     Button,
     Grid,
+    TextField,
 } from '@material-ui/core'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
 import { inject } from 'mobx-react'
 import { toJS } from 'mobx'
+import { Autocomplete } from '@material-ui/lab'
 
 @inject(({ ProjectStore }) => {
     return {
@@ -52,18 +54,25 @@ class NewProject extends Component {
                                     />
                                 </Grid>
                                 <Grid item md={2} sm={4} xs={12}>
-                                    Git репозиторий
+                                    Используемые языки и фреймворки
                                 </Grid>
                                 <Grid item md={10} sm={8} xs={12}>
-                                    <TextValidator
-                                        className="mb-6 w-full"
-                                        label="Git репозиторий"
-                                        name="repository"
-                                        size="small"
-                                        variant="outlined"
-                                        type="text"
-                                        value={projectData.repository || ''}
-                                        onChange={changeHandler}
+                                    <Autocomplete
+                                        multiple
+                                        id="tags-outlined"
+                                        options={supportedLanguages}
+                                        getOptionLabel={(option) => option.language}
+                                        filterSelectedOptions
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                className="mb-6 w-full"
+                                                variant="outlined"
+                                                label="Используемые языки и фреймворки"
+                                                placeholder="Выберите из списка языки и фрейморки"
+                                                fullWidth
+                                            />
+                                        )}
                                     />
                                 </Grid>
                             </Grid>
@@ -102,5 +111,21 @@ class NewProject extends Component {
         )
     }
 }
+
+const supportedLanguages = [
+    { language: '.NET', scanTool: 'Security Code Scan' },
+    { language: 'C/C++', scanTool: 'Flawfinder' },
+    { language: 'Go', scanTool: 'Gosec' },
+    { language: 'Groovy', scanTool: 'SpotBugs' },
+    { language: 'Java', scanTool: 'SpotBugs' },
+    { language: 'JavaScript', scanTool: 'ESLint security plugin' },
+    { language: 'Kubernetes manifests', scanTool: 'Kubesec' },
+    { language: 'Node.js', scanTool: 'NodeJsScan' },
+    { language: 'PHP', scanTool: 'phpcs-security-audit' },
+    { language: 'Python', scanTool: 'bandit' },
+    { language: 'React', scanTool: 'ESLint react plugin' },
+    { language: 'Ruby on Rails', scanTool: 'brakeman' },
+    { language: 'TypeScript', scanTool: 'TSLint config security' },
+]
 
 export default NewProject

@@ -2,26 +2,21 @@ import React from 'react'
 import { ChatAvatar } from 'app/components'
 import Scrollbar from 'react-perfect-scrollbar'
 import { Divider } from '@material-ui/core'
-import { format } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     chatSidenav: {
         borderRight: '1px solid rgba(0, 0, 0, 0.08)',
-        height: 650,
+        height: 750,
     },
 }))
 
 const ChatSidenav = ({
     currentUser,
-    contactList = [],
-    // recentContactList = [],
     handleContactClick,
 }) => {
     const classes = useStyles()
-
-    console.log(JSON.stringify(contactList))
 
     return (
         <div className={clsx('bg-default', classes.chatSidenav)}>
@@ -45,12 +40,6 @@ const ChatSidenav = ({
                         />
                         <div className="pl-4">
                             <p className="m-0">{contact.name}</p>
-                            <p className="m-0 text-muted">
-                                {format(
-                                    new Date(contact.lastChatTime).getTime(),
-                                    'MMMM dd, yyyy'
-                                )}
-                            </p>
                         </div>
                     </div>
                 ))}
@@ -104,21 +93,21 @@ const contactList = [
         "id": "323sa680b3249760ea21rt47",
         "name": "Сергей Сидоров",
         "avatar": "/assets/images/faces/13.jpg",
-        "status": "online",
+        "status": "offline",
         "mood": ""
     },
     {
         "id": "14663a3406eb47ffa63d4fec9429cb71",
         "name": "Руслан Безозеров",
         "avatar": "/assets/images/faces/12.jpg",
-        "status": "online",
+        "status": "offline",
         "mood": ""
     },
     {
         "id": "43bd9bc59d164b5aea498e3ae1c24c3c",
         "name": "Наталья Литвинова",
         "avatar": "/assets/images/faces/3.jpg",
-        "status": "online",
+        "status": "offline",
         "mood": ""
     },
     {
@@ -132,7 +121,7 @@ const contactList = [
         "id": "e929b1d790ab49968ed8e34648553df4",
         "name": "Владимир Мазуров",
         "avatar": "/assets/images/faces/10.jpg",
-        "status": "online",
+        "status": "offline",
         "mood": ""
     },
     {
@@ -153,7 +142,7 @@ const contactList = [
         "id": "dea902191b964a68ba5f2d93cff37e13",
         "name": "Ксения Колчакова",
         "avatar": "/assets/images/faces/15.jpg",
-        "status": "online",
+        "status": "offline",
         "mood": ""
     },
     {

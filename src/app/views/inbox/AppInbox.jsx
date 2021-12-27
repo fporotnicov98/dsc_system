@@ -63,6 +63,8 @@ const AppInbox = () => {
         return () => setIsAlive(false)
     }, [])
 
+    console.log(messageList)
+
     return (
         <div className="flex m-sm-30">
             <div className="w-full">

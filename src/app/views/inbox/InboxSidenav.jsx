@@ -22,58 +22,31 @@ const InboxSidenav = () => {
                 variant="contained"
                 className="py-2 bg-error w-full"
             >
-                Compose
+                Написать
             </Button>
             <ListItem button>
                 <ListItemIcon>
                     <Icon>inbox</Icon>
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary="Входящие" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <Icon>folder_special</Icon>
                 </ListItemIcon>
-                <ListItemText primary="Starred" />
+                <ListItemText primary="Избранные" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <Icon>send</Icon>
                 </ListItemIcon>
-                <ListItemText primary="Sent" />
-            </ListItem>
-            <ListItem button>
-                <ListItemIcon>
-                    <Icon>inbox</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary="Отправленные" />
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <Icon>error</Icon>
                 </ListItemIcon>
-                <ListItemText primary="Spam" />
-            </ListItem>
-
-            <Divider />
-
-            <ListItem button>
-                <ListItemIcon>
-                    <Icon color="primary">people</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Social" />
-            </ListItem>
-            <ListItem button>
-                <ListItemIcon>
-                    <Icon color="secondary">local_offer</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Promotions" />
-            </ListItem>
-            <ListItem button>
-                <ListItemIcon>
-                    <Icon color="secondary">forums</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Forums" />
+                <ListItemText primary="Спам" />
             </ListItem>
 
             <InboxComposeDialog open={open} handleClose={handleClose} />

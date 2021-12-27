@@ -12,16 +12,16 @@ import { MatxMenu } from 'app/components'
 import Scrollbar from 'react-perfect-scrollbar'
 import EmptyMessage from './EmptyMessage'
 import { ChatAvatar } from 'app/components'
-import { getTimeDifference } from 'utils'
 import shortid from 'shortid'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import { useState } from 'react'
+import dayjs from 'dayjs';
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     chatContainer: {
         background: 'rgba(0, 0, 0, 0.05)',
-        height: 650,
+        height: 750,
     },
 }))
 
@@ -29,8 +29,6 @@ const ChatContainer = ({
     id: currentUserId,
     toggleSidenav,
     currentChatRoom,
-    opponentUser,
-    messageList = [],
     handleMessageSend,
 }) => {
     const [message, setMessage] = useState('')
@@ -61,7 +59,6 @@ const ChatContainer = ({
                     {opponentUser && (
                         <Fragment>
                             <ChatAvatar
-                                src={opponentUser.avatar}
                                 status={opponentUser.status}
                             />
                             <h5 className="ml-4 whitespace-pre mb-0 font-medium text-18 text-white">
@@ -105,7 +102,6 @@ const ChatContainer = ({
                         key={shortid.generate()}
                     >
                         <ChatAvatar
-                            src={message.avatar}
                             status={message.status}
                         />
                         <div className="ml-4">
@@ -124,7 +120,7 @@ const ChatContainer = ({
                                 </span>
                             </div>
                             <small className="text-muted mb-0">
-                                {getTimeDifference(new Date(message.time))} ago
+                                {dayjs(message.time).format('DD-MM-YYYY HH:mm')}
                             </small>
                         </div>
                     </div>
@@ -163,5 +159,98 @@ const ChatContainer = ({
         </div>
     )
 }
+
+const opponentUser = {
+    avatar: "/assets/images/faces/13.jpg",
+    id: "323sa680b3249760ea21rt47",
+    mood: "",
+    name: "Николай Петров",
+    status: "online"
+}
+
+const messageList = [
+    {
+        avatar: "/assets/images/faces/13.jpg",
+        contactId: "323sa680b3249760ea21rt47",
+        id: "323sa680b3249760ea21rt47",
+        mood: "",
+        name: "Николай Петров",
+        status: "online",
+        text: "Добрый вечер! Подскажите, какие инструменты разработки будем использовать",
+        time: "2021-12-03T08:45:28.291Z"
+    },
+    {
+        avatar: "/assets/images/face-1.jpg",
+        contactId: "7863a6802ez0e277a0f98534",
+        id: "7863a6802ez0e277a0f98534",
+        mood: "",
+        name: "Федор Поротников",
+        status: "online",
+        text: "Привет, вся разработка на mern стеке",
+        time: "2021-12-03T08:52:28.291Z"
+    },
+    {
+        avatar: "/assets/images/faces/13.jpg",
+        contactId: "323sa680b3249760ea21rt47",
+        id: "323sa680b3249760ea21rt47",
+        mood: "",
+        name: "Николай Петров",
+        status: "online",
+        text: "Ок, понял",
+        time: "2021-12-03T08:54:28.291Z"
+    },
+    {
+        avatar: "/assets/images/face-1.jpg",
+        contactId: "7863a6802ez0e277a0f98534",
+        id: "7863a6802ez0e277a0f98534",
+        mood: "",
+        name: "Федор Поротников",
+        status: "online",
+        text: "Назначаю тебя ответсвенным за команду разработки",
+        time: "2021-12-03T08:56:28.291Z"
+    },
+    {
+        avatar: "/assets/images/faces/13.jpg",
+        contactId: "323sa680b3249760ea21rt47",
+        id: "323sa680b3249760ea21rt47",
+        mood: "",
+        name: "Николай Петров",
+        status: "online",
+        text: "Какие мои основные обязанности будут?",
+        time: "2021-12-03T09:00:28.291Z"
+    },
+    {
+        avatar: "/assets/images/face-1.jpg",
+        contactId: "7863a6802ez0e277a0f98534",
+        id: "7863a6802ez0e277a0f98534",
+        mood: "",
+        name: "Федор Поротников",
+        status: "online",
+        text: "Расскажу все на официальном назначении в понедельник",
+        time: "2021-12-03T09:05:28.291Z"
+    },
+    {
+        avatar: "/assets/images/faces/13.jpg",
+        contactId: "323sa680b3249760ea21rt47",
+        id: "323sa680b3249760ea21rt47",
+        mood: "",
+        name: "Николай Петров",
+        status: "online",
+        text: "Хорошо",
+        time: "2021-12-03T09:12:28.291Z"
+
+    },
+    {
+        avatar: "/assets/images/face-1.jpg",
+        contactId: "7863a6802ez0e277a0f98534",
+        id: "7863a6802ez0e277a0f98534",
+        mood: "",
+        name: "Федор Поротников",
+        status: "online",
+        text: "Пока подумай кого можно назначить на ревью кода, нужно 3-4 человека, я думаю про Лену и Вову",
+        time: "2021-12-03T09:17:28.291Z"
+
+    }
+]
 
 export default ChatContainer

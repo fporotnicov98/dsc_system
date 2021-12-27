@@ -7,7 +7,6 @@ import {
   Icon
 } from '@material-ui/core'
 import { GoogleIcon } from 'app/components'
-import { Link } from 'react-router-dom'
 import PhoneIcon from '@material-ui/icons/Phone';
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'

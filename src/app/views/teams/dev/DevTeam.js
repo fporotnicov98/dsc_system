@@ -4,11 +4,9 @@ import {
   Card,
   Avatar,
   Divider,
-  Button,
   Icon,
   TablePagination,
 } from '@material-ui/core'
-import Axios from 'axios'
 import ProfileCard2 from './ProfileCard2'
 import { makeStyles } from '@material-ui/core/styles'
 import { observer } from 'mobx-react-lite'
@@ -117,7 +115,7 @@ const DevTeam = observer(({ UserStore }) => {
             </div>
             <Divider className="mb-8" />
             <div className="m-5">
-              <p className="text-muted mt-0 mb-3">Соединение с Git-репозиторием</p>
+              <p className="text-muted mt-0 mb-4">Соединение с Git-репозиториями</p>
               <div>
                 <h5>На данный момент у вас нет подключенных репозиториев</h5>
               </div>

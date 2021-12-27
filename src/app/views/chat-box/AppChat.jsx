@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Card, useMediaQuery } from '@material-ui/core'
 import {
-    Breadcrumb,
     MatxSidenavContainer,
     MatxSidenav,
     MatxSidenavContent,
@@ -114,9 +113,6 @@ const AppChat = () => {
 
     return (
         <div className="m-sm-30">
-            <div className="mb-sm-30">
-                <Breadcrumb routeSegments={[{ name: 'Чат' }]} />
-            </div>
             <Card elevation={6} className="min-h-full">
                 <MatxSidenavContainer>
                     <MatxSidenav

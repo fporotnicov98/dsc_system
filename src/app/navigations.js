@@ -41,6 +41,12 @@ export const navigations = [
         role: ['SA']
     },
     {
+        name: 'Инциденты',
+        icon: 'error_outline',
+        path: '/todo/list',
+        role: ['SA']
+    },
+    {
         name: 'CI/CD',
         icon: 'all_inclusive',
         path: '/ci-cd',

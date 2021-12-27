@@ -28,7 +28,8 @@ const CustomerInfo = (props) => {
     ]
 
     return (
-        <Card className="pt-6" elevation={3}>
+        <Card elevation={3}>
+            <span className="flex justify-end text-primary m-2"><Icon>settings</Icon></span>
             <div className="flex-column items-center mb-6">
                 <Avatar
                     className="w-84 h-84"
@@ -65,14 +66,6 @@ const CustomerInfo = (props) => {
                     </Icon>{' '}
                     Сбросить или Сменить пароль
                 </Button>
-
-                <Button className="mb-1" variant="text">
-                    <Icon className="mr-2" fontSize="small">
-                        person
-                    </Icon>{' '}
-                    Войти как клиент
-                </Button>
-
                 <Button
                     className="mb-4 bg-error text-white"
                     variant="contained"
