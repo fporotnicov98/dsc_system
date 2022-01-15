@@ -15,3 +15,5 @@ export const auth0Config = {
 }
 
 export const api = 'https://dsc-system.herokuapp.com'
+
+export const githubApi = 'https://api.github.com'

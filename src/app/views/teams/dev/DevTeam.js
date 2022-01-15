@@ -6,6 +6,8 @@ import {
   Divider,
   Icon,
   TablePagination,
+  Button,
+  TextField,
 } from '@material-ui/core'
 import ProfileCard2 from './ProfileCard2'
 import { makeStyles } from '@material-ui/core/styles'
@@ -81,7 +83,7 @@ const DevTeam = observer(({ UserStore }) => {
       <Grid container spacing={2}>
         <Grid item md={7} sm={12} xs={12}>
           <h5>Управление командой</h5>
-          <Card className="pb-4">
+          <Card>
             <span className="flex justify-end text-primary m-2"><Icon>settings</Icon></span>
             <div className="p--8 flex items-end justify-around">
               <div className={classes.resposible}>
@@ -116,8 +118,28 @@ const DevTeam = observer(({ UserStore }) => {
             <Divider className="mb-8" />
             <div className="m-5">
               <p className="text-muted mt-0 mb-4">Соединение с Git-репозиториями</p>
-              <div>
-                <h5>На данный момент у вас нет подключенных репозиториев</h5>
+              <h5 className="mb-4">На данный момент у вас нет подключенных репозиториев</h5>
+              <div className="mb-4 flex items-center">
+                <TextField
+                  label="Репозиторий"
+                  variant="outlined"
+                  size="small"
+                  className="mr-4"
+                  placeholder="Введите название репозитория..."
+                />
+                <Button
+                  size="small"
+                  className="bg-light-primary hover-bg-primary text-primary px-5 mr-1"
+                >
+                  Найти существующий репозиторий
+                </Button>
+                <span className=" ml-4 mr-4 flex">или</span>
+                <Button
+                  size="small"
+                  className="bg-light-primary hover-bg-primary text-primary px-5 mr-1"
+                >
+                  Создать новый
+                </Button>
               </div>
             </div>
           </Card>

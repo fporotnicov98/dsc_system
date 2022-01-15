@@ -35,7 +35,7 @@ const CustomerDetails = (props) => {
         setRepos(data.public_repos)
         setAvatar(data.avatar_url)
     }
-
+    
     const handleSearch = (e) => {
         setUserInput(e.target.value)
     }
