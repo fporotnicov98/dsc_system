@@ -12,7 +12,6 @@ const FileOpen = ({ decodeFile, fileName }) => {
       </div>
       <CodeMirror
         value={decodeFile}
-        // height="200px"
         theme={oneDark}
         extensions={[javascript({ jsx: true })]}
         onChange={(value, viewUpdate) => {

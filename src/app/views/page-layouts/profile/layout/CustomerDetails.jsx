@@ -55,7 +55,7 @@ const CustomerDetails = (props) => {
                         <Grid item lg={12} md={12} sm={12}>
                             <Card className="p-8">
                                 <Grid container spacing={3}>
-                                    <h4 className="font-medium text-muted">
+                                    <h4 className="text-center font-medium text-muted">
                                         GitHub Connect
                                     </h4>
                                     {/* <Grid container>
