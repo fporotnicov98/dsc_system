@@ -25,6 +25,7 @@ import ViewProjectComponent from './views/projected/ViewProject'
 import UsersComponent from './views/users/allUsers'
 import TeamsComponent from './views/teams/all'
 import DevTeamsComponent from './views/teams/dev'
+import RepositoriesComponent from './views/repositories'
 import todoRoutes from './views/todo/TodoRoutes'
 
 const App = () => {
@@ -56,6 +57,8 @@ const App = () => {
                       {/* <Route path={'/users/add-user'} exact={true} render={() => <NewUserComponent />} /> */}
                       <Route path={'/teams/all'} exact={true} render={() => <TeamsComponent />} />
                       <Route path={'/teams/dev'} exact={true} render={() => <DevTeamsComponent />} />
+
+                      <Route path={'/repositories'} exact={true} render={() => <RepositoriesComponent />} />
 
                       {/* <Route path={'/incidents'} exact={true} render={() => <AppTodo />} />
                       <Route path="/incidents/list/:id" component={TodoEditor} />

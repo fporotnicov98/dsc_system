@@ -5,14 +5,20 @@ import {
   Avatar,
   Divider,
   Icon,
+  Grow,
   TablePagination,
   Button,
+  IconButton,
+  Tooltip,
   TextField,
 } from '@material-ui/core'
 import ProfileCard2 from './ProfileCard2'
 import { makeStyles } from '@material-ui/core/styles'
 import { observer } from 'mobx-react-lite'
 import { MatxLoading } from 'app/components'
+import { NavLink } from "react-router-dom";
+import dayjs from 'dayjs';
+import MUIDataTable from 'mui-datatables'
 
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
@@ -77,6 +83,87 @@ const DevTeam = observer(({ UserStore }) => {
   const firstNameUser = users[0].firstName
   const lastNameUser = users[0].lastName
 
+  const repositories = [
+    {
+      _id: 1,
+      repo_name: 'dsc_system',
+      created_date: '2021-11-23T15:49:34Z',
+      owner: 'fporotnicov98',
+      github_url: 'https://github.com/fporotnicov98/dsc_system'
+    },
+    {
+      _id: 2,
+      repo_name: 'dsc_system_back',
+      created_date: '2021-11-23T16:00:37Z',
+      owner: 'fporotnicov98',
+      github_url: 'https://github.com/fporotnicov98/dsc_system_back'
+    },
+    {
+      _id: 3,
+      repo_name: 'department-website',
+      created_date: '2020-05-25T12:26:16Z',
+      owner: 'fporotnicov98',
+      github_url: 'https://github.com/fporotnicov98/department-website'
+    }
+  ]
+
+  const columns = [
+    {
+      name: 'projectName',
+      label: 'Название репозитория',
+      options: {
+        filter: true,
+        customBodyRenderLite: (dataIndex) => (
+          <NavLink to={`/repositories`} className="ellipsis">
+            {repositories[dataIndex].repo_name}
+          </NavLink>
+        ),
+      },
+    },
+    {
+      name: 'date',
+      label: 'Дата создания',
+      options: {
+        filter: true,
+        customBodyRenderLite: (dataIndex) => {
+          return (
+            <span className="ellipsis">
+              {dayjs(repositories[dataIndex].created_date).format('DD-MM-YYYY HH:mm')}
+            </span>
+          )
+        }
+      },
+    },
+    {
+      name: 'date',
+      label: 'Владелец',
+      options: {
+        filter: true,
+        customBodyRenderLite: (dataIndex) => {
+          return (
+            <span className="ellipsis">
+              {repositories[dataIndex].owner}
+            </span>
+          )
+        }
+      },
+    },
+    {
+      name: 'date',
+      label: 'Ссылка на GitHub',
+      options: {
+        filter: true,
+        customBodyRenderLite: (dataIndex) => {
+          return (
+            <a href={repositories[dataIndex].github_url} className="ellipsis">
+              {repositories[dataIndex].github_url}
+            </a>
+          )
+        }
+      },
+    }
+  ]
+
   return (
     <div className="m-sm-30">
       <h4>Команда разработки</h4>
@@ -117,16 +204,16 @@ const DevTeam = observer(({ UserStore }) => {
             </div>
             <Divider className="mb-8" />
             <div className="m-5">
-              <p className="text-muted mt-0 mb-4">Соединение с Git-репозиториями</p>
-              <h5 className="mb-4">На данный момент у вас нет подключенных репозиториев</h5>
+              <h6 className="text-muted mt-0 mb-4">Соединение с Git-репозиториями</h6>
+              {/* <h5 className="mb-4">На данный момент у вас нет подключенных репозиториев</h5> */}
               <div className="mb-4 flex items-center">
-                <TextField
+                {/* <TextField
                   label="Репозиторий"
                   variant="outlined"
                   size="small"
                   className="mr-4"
                   placeholder="Введите название репозитория..."
-                />
+                /> */}
                 <Button
                   size="small"
                   className="bg-light-primary hover-bg-primary text-primary px-5 mr-1"
@@ -141,6 +228,61 @@ const DevTeam = observer(({ UserStore }) => {
                   Создать новый
                 </Button>
               </div>
+              <MUIDataTable
+                title={'Покдюченные репозитории'}
+                data={repositories}
+                columns={columns}
+                options={{
+                  filterType: 'textField',
+                  responsive: 'standard',
+                  elevation: 0,
+                  rowsPerPageOptions: [10, 20, 40, 80, 100],
+                  onRowsDelete: ({ data }) => {
+                    const id = repositories[data[0].dataIndex]._id
+                  },
+                  customSearchRender: (
+                    searchText,
+                    handleSearch,
+                    hideSearch,
+                    options
+                  ) => {
+                    return (
+                      <Grow appear in={true} timeout={300}>
+                        <TextField
+                          variant="outlined"
+                          size="small"
+                          fullWidth
+                          onChange={({ target: { value } }) =>
+                            handleSearch(value)
+                          }
+                          InputProps={{
+                            style: {
+                              paddingRight: 0,
+                            },
+                            startAdornment: (
+                              <Icon
+                                className="mr-2"
+                                fontSize="small"
+                              >
+                                search
+                              </Icon>
+                            ),
+                            endAdornment: (
+                              <IconButton
+                                onClick={hideSearch}
+                              >
+                                <Icon fontSize="small">
+                                  clear
+                                </Icon>
+                              </IconButton>
+                            ),
+                          }}
+                        />
+                      </Grow>
+                    )
+                  },
+                }}
+              />
             </div>
           </Card>
         </Grid>
