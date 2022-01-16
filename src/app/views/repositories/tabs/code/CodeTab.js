@@ -1,6 +1,7 @@
 import { Card, Icon, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { githubApi } from 'config';
 import React, { useState } from 'react';
+import BrunchMenu from './BrunchMenu';
 import FileOpen from './FileOpen';
 
 const columns = [
@@ -38,6 +39,7 @@ const CodeTab = ({ files }) => {
   return (
     <Card>
       <div className="overflow-auto m-5">
+        <BrunchMenu />
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

@@ -6,6 +6,7 @@ import RepositoriesManagement from './RepositoriesManagement';
 const RepositoriesComponent = () => {
   const [repos, setRepos] = useState({})
   const [files, setFiles] = useState([])
+  const [commits, setCommits] = useState([])
 
   useEffect(() => {
     fetch(`${githubApi}/repos/fporotnicov98/dsc_system`)
@@ -23,7 +24,15 @@ const RepositoriesComponent = () => {
       })
   })
 
-  if (!repos || !files) {
+  useEffect(() => {
+    fetch(`${githubApi}/repos/fporotnicov98/dsc_system/commits`)
+      .then(res => res.json())
+      .then(data => {
+        setCommits(data)
+      })
+  })
+
+  if (!repos || !files || !commits) {
     return <MatxLoading />
   }
 
@@ -31,6 +40,7 @@ const RepositoriesComponent = () => {
     <RepositoriesManagement
       repos={repos}
       files={files}
+      commits={commits}
     />
   )
 }

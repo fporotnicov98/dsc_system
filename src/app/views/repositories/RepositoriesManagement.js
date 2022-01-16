@@ -4,7 +4,7 @@ import {
 } from 'app/components';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Card, Grid, Icon, Tab, Tabs } from '@material-ui/core';
-import CodeTab from './tabs/CodeTab';
+import CodeTab from './tabs/code/CodeTab';
 import CommitsTab from './tabs/CommitsTab';
 import ProjectsTab from './tabs/ProjectsTab';
 import SecurityTab from './tabs/SecurityTab';
@@ -15,7 +15,8 @@ const tabList = ['Код', 'Коммиты', 'Проекты', 'Безопасн
 const RepositoriesManagement = (props) => {
   const {
     repos,
-    files
+    files,
+    commits
   } = props
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -65,7 +66,7 @@ const RepositoriesManagement = (props) => {
           </Card>
 
           {tabIndex === 0 && <CodeTab files={files} />}
-          {tabIndex === 1 && <CommitsTab />}
+          {tabIndex === 1 && <CommitsTab commits={commits} />}
           {tabIndex === 2 && <ProjectsTab />}
           {tabIndex === 3 && <SecurityTab />}
           {tabIndex === 4 && <SettingsTab />}
