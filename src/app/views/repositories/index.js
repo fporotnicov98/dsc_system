@@ -22,7 +22,7 @@ const RepositoriesComponent = () => {
       .then(data => {
         setFiles(data)
       })
-  })
+  }, [])
 
   useEffect(() => {
     fetch(`${githubApi}/repos/fporotnicov98/dsc_system/commits`)
@@ -30,7 +30,7 @@ const RepositoriesComponent = () => {
       .then(data => {
         setCommits(data)
       })
-  })
+  }, [])
 
   if (!repos || !files || !commits) {
     return <MatxLoading />
