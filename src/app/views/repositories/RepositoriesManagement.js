@@ -45,7 +45,7 @@ const RepositoriesManagement = (props) => {
         </span>
       </div>
       <Grid container spacing={2}>
-        <Grid item md={8} sm={12} xs={12}>
+        <Grid item md={tabIndex === 2 ? 12 : 8} sm={12} xs={12}>
           <Card className="mb-4">
             <Tabs
               className="mt-4"
@@ -53,6 +53,7 @@ const RepositoriesManagement = (props) => {
               onChange={handleTabChange}
               indicatorColor="primary"
               textColor="primary"
+              variant='fullWidth'
             >
               {tabList.map((item, ind) => (
                 <Tab
@@ -71,41 +72,45 @@ const RepositoriesManagement = (props) => {
           {tabIndex === 3 && <SecurityTab />}
           {tabIndex === 4 && <SettingsTab />}
         </Grid>
-        <Grid item md={4} sm={12} xs={12}>
-          <Card>
-            <div className="mt-7 text-white flex items-center justify-center text-16">Команда</div>
-            <MatxDivider />
-            <div className="manager m-4">
-              <div className="text-white text-16 mb-6">Project Manager</div>
-              <div className="text-hint text-15">Поротников Федор</div>
-            </div>
-            <MatxDivider />
-            <div className="owner m-4">
-              <div className="text-white text-16 mb-6">Ответственный</div>
-              <div className="text-hint text-15">
-                Петров Николай
-              </div>
-            </div>
-            <MatxDivider />
-            <div className="rewiewers m-4">
-              <div className="text-white text-16 mb-6">Проверка кода</div>
-              <div className="text-hint text-15 flex items-center">
-                <Icon className="text-brand mr-4" fontSize="small">panorama_fish_eye</Icon>
-                Китаев Илья <a className="text-brand ml-4 flex items-center" href="hhttps://github.com/ilkit"><GitHubIcon size='small' /> (ilkit)</a>
+        {
+          tabIndex !== 2 && (
+            <Grid item md={4} sm={12} xs={12}>
+              <Card>
+                <div className="mt-7 text-white flex items-center justify-center text-16">Команда</div>
+                <MatxDivider />
+                <div className="manager m-4">
+                  <div className="text-white text-16 mb-6">Project Manager</div>
+                  <div className="text-hint text-15">Поротников Федор</div>
                 </div>
-              <div className="text-hint text-15">Васильев Петр</div>
-              <div className="text-hint text-15">Белозеров Руслан</div>
-            </div>
-            <MatxDivider />
-            <div className="others m-4">
-              <div className="text-hint text-15">Васильев Георгий</div>
-              <div className="text-hint text-15">Литвинова Наталья</div>
-              <div className="text-hint text-15">Щукин Константин</div>
-              <div className="text-hint text-15">Трифоненко Елена</div>
-              <div className="text-hint text-15">Мазуров Владимир</div>
-            </div>
-          </Card>
-        </Grid>
+                <MatxDivider />
+                <div className="owner m-4">
+                  <div className="text-white text-16 mb-6">Ответственный</div>
+                  <div className="text-hint text-15">
+                    Петров Николай
+                  </div>
+                </div>
+                <MatxDivider />
+                <div className="rewiewers m-4">
+                  <div className="text-white text-16 mb-6">Проверка кода</div>
+                  <div className="text-hint text-15 flex items-center">
+                    <Icon className="text-brand mr-4" fontSize="small">panorama_fish_eye</Icon>
+                    Китаев Илья <a className="text-brand ml-4 flex items-center" href="hhttps://github.com/ilkit"><GitHubIcon size='small' /> (ilkit)</a>
+                  </div>
+                  <div className="text-hint text-15">Васильев Петр</div>
+                  <div className="text-hint text-15">Белозеров Руслан</div>
+                </div>
+                <MatxDivider />
+                <div className="others m-4">
+                  <div className="text-hint text-15">Васильев Георгий</div>
+                  <div className="text-hint text-15">Литвинова Наталья</div>
+                  <div className="text-hint text-15">Щукин Константин</div>
+                  <div className="text-hint text-15">Трифоненко Елена</div>
+                  <div className="text-hint text-15">Мазуров Владимир</div>
+                </div>
+              </Card>
+            </Grid>
+          )
+        }
       </Grid>
     </div>
   );
