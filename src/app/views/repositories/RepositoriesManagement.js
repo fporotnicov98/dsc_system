@@ -6,7 +6,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import { Card, Grid, Icon, Tab, Tabs } from '@material-ui/core';
 import CodeTab from './tabs/code/CodeTab';
 import CommitsTab from './tabs/commit/CommitsTab';
-import ProjectsTab from './tabs/ProjectsTab';
+import ProjectsTab from './tabs/project/ProjectsTab';
 import SecurityTab from './tabs/SecurityTab';
 import SettingsTab from './tabs/SettingsTab';
 
