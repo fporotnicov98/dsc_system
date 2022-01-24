@@ -18,4 +18,4 @@ export const api = 'https://dsc-system.herokuapp.com'
 
 export const githubApi = 'https://api.github.com'
 
-export const myToken = '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'
+export const myToken = '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'

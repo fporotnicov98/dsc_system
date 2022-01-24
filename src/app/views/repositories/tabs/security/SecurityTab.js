@@ -1,4 +1,4 @@
-import { Button, Card, Icon, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Button, Card, CircularProgress, Icon, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { githubApi } from 'config';
 import dayjs from 'dayjs';
 import React, {} from 'react';
@@ -49,10 +49,16 @@ const SecurityTab = ({ actions }) => {
                 <TableCell className="p-3" align="left">
                   <div className="flex items-center">
                     {
-                      runs.status === 'in_progress' && (<Icon className='text-green mr-4' fontSize="small">check_circle</Icon>)
+                      runs.status === 'in_progress' && (
+                      <CircularProgress
+                        color="secondary"
+                      />)
                     }
                     {
-                      runs.status === 'completed' && (<Icon className='text-green mr-4' fontSize="small">check_circle</Icon>)
+                      runs.conclusion === 'success' && (<Icon className='text-green mr-4' fontSize="small">check_circle</Icon>)
+                    }
+                    {
+                      runs.conclusion === 'failure' && (<Icon className='text-error mr-4' fontSize="small">cancel</Icon>)
                     }
                     <a href="#">
                       <span className="text-brand">{runs.head_commit.message}</span>
