@@ -48,7 +48,12 @@ const SecurityTab = ({ actions }) => {
               <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                 <TableCell className="p-3" align="left">
                   <div className="flex items-center">
-                  <Icon className='text-green mr-4' fontSize="small">check_circle</Icon>
+                    {
+                      runs.status === 'in_progress' && (<Icon className='text-green mr-4' fontSize="small">check_circle</Icon>)
+                    }
+                    {
+                      runs.status === 'completed' && (<Icon className='text-green mr-4' fontSize="small">check_circle</Icon>)
+                    }
                     <a href="#">
                       <span className="text-brand">{runs.head_commit.message}</span>
                     </a>
