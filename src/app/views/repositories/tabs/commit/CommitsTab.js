@@ -7,10 +7,10 @@ import CommitOpen from './CommitOpen';
 
 const columns = [
   { id: 'name', label: 'Сообщение коммита', minWidth: '100px' },
-  { id: 'author', label: 'Автор', minWidth: '100px', align: 'center' },
+  { id: 'author', label: 'Автор', maxWidth: '150px', align: 'center' },
   { id: 'time', label: 'Время изменения', minWidth: '100px' },
   { id: 'sha', label: 'SHA', minWidth: '100px', align: 'center' },
-  { id: 'gitUrl', label: 'Ссылка GitHub', minWidth: '100px', align: 'center' }
+  { id: 'gitUrl', label: 'Ссылка GitHub', maxWidth: '100px', align: 'center' }
 ];
 
 const CommitsTab = ({ commits }) => {
@@ -74,7 +74,8 @@ const CommitsTab = ({ commits }) => {
                   align={column.align}
                   className="p-2"
                   style={{
-                    minWidth: column.minWidth,
+                    maxWidth: columns?.maxWidth,
+                    minWidth: column?.minWidth,
                     fontSize: '15px'
                   }}
                 >
@@ -100,7 +101,7 @@ const CommitsTab = ({ commits }) => {
                   {dayjs(commit.commit.committer.date).format('DD-MM-YYYY HH:mm')}
                 </TableCell>
                 <TableCell className="p-3" align="left">
-                  {commit.sha}
+                  {commit.sha.slice(0, 6)}
                 </TableCell>
                 <TableCell className="p-3" align="center">
                   <a href={commit.html_url}><Icon fontSize="small">open_in_new</Icon></a>

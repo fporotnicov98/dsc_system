@@ -204,7 +204,7 @@ const DevTeam = observer(({ UserStore }) => {
             </div>
             <Divider className="mb-8" />
             <div className="m-5">
-              <h6 className="text-muted mt-0 mb-4">Соединение с Git-репозиториями</h6>
+              <h3 className="text-muted mt-0 mb-4">Управление репозиториями кода GitHub</h3>
               {/* <h5 className="mb-4">На данный момент у вас нет подключенных репозиториев</h5> */}
               <div className="mb-4 flex items-center">
                 {/* <TextField
@@ -229,7 +229,7 @@ const DevTeam = observer(({ UserStore }) => {
                 </Button>
               </div>
               <MUIDataTable
-                title={'Покдюченные репозитории'}
+                title={'Подключенные репозитории'}
                 data={repositories}
                 columns={columns}
                 options={{

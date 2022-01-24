@@ -7,7 +7,7 @@ import { Card, Grid, Icon, Tab, Tabs } from '@material-ui/core';
 import CodeTab from './tabs/code/CodeTab';
 import CommitsTab from './tabs/commit/CommitsTab';
 import ProjectsTab from './tabs/project/ProjectsTab';
-import SecurityTab from './tabs/SecurityTab';
+import SecurityTab from './tabs/security/SecurityTab';
 import SettingsTab from './tabs/SettingsTab';
 
 const tabList = ['Код', 'Коммиты', 'Проекты', 'Безопасность', 'Настройки']
@@ -16,7 +16,8 @@ const RepositoriesManagement = (props) => {
   const {
     repos,
     files,
-    commits
+    commits,
+    actions
   } = props
 
   const [tabIndex, setTabIndex] = useState(0)
@@ -69,7 +70,7 @@ const RepositoriesManagement = (props) => {
           {tabIndex === 0 && <CodeTab files={files} />}
           {tabIndex === 1 && <CommitsTab commits={commits} />}
           {tabIndex === 2 && <ProjectsTab />}
-          {tabIndex === 3 && <SecurityTab />}
+          {tabIndex === 3 && <SecurityTab actions={actions} />}
           {tabIndex === 4 && <SettingsTab />}
         </Grid>
         {
@@ -80,7 +81,10 @@ const RepositoriesManagement = (props) => {
                 <MatxDivider />
                 <div className="manager m-4">
                   <div className="text-white text-16 mb-6">Project Manager</div>
-                  <div className="text-hint text-15">Поротников Федор</div>
+                  <div className="text-hint text-15 flex items-center">
+                    <Icon className="text-brand mr-4" fontSize="small">panorama_fish_eye</Icon>
+                    Поротников Федор <a className="text-brand ml-4 flex items-center" href="hhttps://github.com/fporotnicov98"><GitHubIcon size='small' /> (fporotnicov98)</a>
+                  </div>
                 </div>
                 <MatxDivider />
                 <div className="owner m-4">
@@ -92,9 +96,10 @@ const RepositoriesManagement = (props) => {
                 <MatxDivider />
                 <div className="rewiewers m-4">
                   <div className="text-white text-16 mb-6">Проверка кода</div>
-                  <div className="text-hint text-15 flex items-center">
-                    <Icon className="text-brand mr-4" fontSize="small">panorama_fish_eye</Icon>
-                    Китаев Илья <a className="text-brand ml-4 flex items-center" href="hhttps://github.com/ilkit"><GitHubIcon size='small' /> (ilkit)</a>
+                  <div className="text-hint text-15">
+                    {/* <Icon className="text-brand mr-4" fontSize="small">panorama_fish_eye</Icon> */}
+                    Китаев Илья 
+                    {/* <a className="text-brand ml-4 flex items-center" href="hhttps://github.com/ilkit"><GitHubIcon size='small' /> (ilkit)</a> */}
                   </div>
                   <div className="text-hint text-15">Васильев Петр</div>
                   <div className="text-hint text-15">Белозеров Руслан</div>
