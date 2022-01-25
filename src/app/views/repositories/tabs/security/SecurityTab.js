@@ -62,8 +62,8 @@ const SecurityTab = ({ actions }) => {
                     {
                       runs.status === 'in_progress' && (
                       <CircularProgress
-                        size='18'
-                        color="primary"
+                        size={24}
+                        color="secondary"
                       />)
                     }
                     {

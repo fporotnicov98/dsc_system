@@ -24,6 +24,20 @@ const NewUserComponent = observer((props) => {
     getUserById(updateUserId);
   }, [getUserById, updateUserId])
 
+  const [ENV_PROD] = ['PRODUCTION'];
+  /* … */
+  const environment = 'PRODUCTION';
+  /* … */
+  function isUserAdmin(user) {
+    if (environmentǃ = ENV_PROD) {
+
+      return true;
+    }
+
+    /* … */
+    return false;
+  }
+
   if (action === 'update') {
     return (
       <UpdateUser
