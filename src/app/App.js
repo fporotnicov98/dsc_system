@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-cond-assign */
-/* eslint-disable no-undef */
 import '../fake-db'
 import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
@@ -33,20 +30,6 @@ import todoRoutes from './views/todo/TodoRoutes'
 
 const App = () => {
   const { stores } = configureStore();
-
-  const [ENV_PROD] = ['PRODUCTION'];
-  /* … */
-  const environment = 'PRODUCTION';
-  /* … */
-  function isUserAdmin(user) {
-    if (environmentǃ = ENV_PROD) {
-      // bypass authZ checks in DEV
-      return true;
-    }
-
-    /* … */
-    return false;
-  }
 
   return (
     <Provider {...stores}>

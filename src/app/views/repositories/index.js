@@ -16,7 +16,7 @@ const RepositoriesComponent = () => {
     .then(data => {
       setActions(data)
     })
-  })
+  }, [])
 
   useEffect(() => {
     fetch(`${githubApi}/repos/fporotnicov98/dsc_system`)

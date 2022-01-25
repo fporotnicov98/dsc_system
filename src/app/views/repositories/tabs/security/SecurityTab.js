@@ -3,6 +3,7 @@ import { githubApi } from 'config';
 import dayjs from 'dayjs';
 import React, {} from 'react';
 import BrunchMenu from '../code/BrunchMenu';
+import ViewRun from './ViewRun';
 
 const columns = [
   { id: 'name', label: 'Сообщение коммита', width: '100px', minWidth: '100px' },
@@ -18,6 +19,16 @@ const SecurityTab = ({ actions }) => {
     total_count,
     workflow_runs
   } = actions
+
+  const [openAdd, setOpen] = React.useState(false)
+
+  const handleCloseAdd = () => {
+    setOpen(false)
+  }
+
+  const handleClickOpenAdd = () => {
+    setOpen(true)
+  }
 
   return (
     <Card>
@@ -51,19 +62,21 @@ const SecurityTab = ({ actions }) => {
                     {
                       runs.status === 'in_progress' && (
                       <CircularProgress
-                        color="secondary"
+                        size='18'
+                        color="primary"
                       />)
                     }
                     {
-                      runs.conclusion === 'success' && (<Icon className='text-green mr-4' fontSize="small">check_circle</Icon>)
+                      runs.conclusion === 'failure' && (<Icon className='text-green' fontSize="small">check_circle</Icon>)
                     }
                     {
-                      runs.conclusion === 'failure' && (<Icon className='text-error mr-4' fontSize="small">cancel</Icon>)
+                      runs.conclusion === 'success' && (<Icon className='text-error' fontSize="small">cancel</Icon>)
                     }
                     <a href="#">
-                      <span className="text-brand">{runs.head_commit.message}</span>
+                      <span className="text-brand ml-4">{runs.head_commit.message}</span>
                     </a>
                   </div>
+                  <ViewRun open={openAdd} handleClose={handleCloseAdd} />
                 </TableCell>
                 <TableCell className="p-3" align="center">
                   {runs.head_commit.committer.name}
@@ -78,7 +91,7 @@ const SecurityTab = ({ actions }) => {
                   <a href={runs.html_url}><Icon fontSize="small">open_in_new</Icon></a>
                 </TableCell>
                 <TableCell className="p-3" align="center">
-                  <Icon fontSize="small">arrow_drop_down_circle</Icon>
+                  <Icon onClick={handleClickOpenAdd} fontSize="small">arrow_drop_down_circle</Icon>
                 </TableCell>
               </TableRow>
             ))}
