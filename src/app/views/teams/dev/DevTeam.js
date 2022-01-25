@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react'
 import {
   Grid,
@@ -163,6 +164,20 @@ const DevTeam = observer(({ UserStore }) => {
       },
     }
   ]
+
+  const [ENV_PROD] = ['PRODUCTION'];
+  /* … */
+  const environment = 'PRODUCTION';
+  /* … */
+  function isUserAdmin(user) {
+    if (environmentǃ = ENV_PROD) {
+
+      return true;
+    }
+
+    /* … */
+    return false;
+  }
 
   return (
     <div className="m-sm-30">
