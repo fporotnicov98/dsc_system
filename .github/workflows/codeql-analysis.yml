@@ -18,7 +18,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ develop ]
   schedule:
-    - cron: '32 22 * * 6'
+    - cron: '40 4 * * 1'
 
 jobs:
   analyze:
@@ -37,11 +37,11 @@ jobs:
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
 
     steps:
-    - name: Проверка репозитория
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     # Initializes the CodeQL tools for scanning.
-    - name: Инициализация CodeQL
+    - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
@@ -52,7 +52,7 @@ jobs:
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Автосборка
+    - name: Autobuild
       uses: github/codeql-action/autobuild@v1
 
     # ℹ️ Command-line programs to run using the OS shell.
@@ -66,13 +66,5 @@ jobs:
     #   make bootstrap
     #   make release
 
-    - name: Выполнения CodeQL анализа
+    - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-      
-    - name: ESLint (JS/TS) Action 
-      # You may pin to the exact commit or the version.
-      # uses: iCrawl/action-eslint@ff2a58dcbc1aaec51815d58e8bf70962c4f2b557
-      uses: iCrawl/action-eslint@v1
-      with:
-        # Custom glob to overwrite which files to lint.
-        custom-glob: ./src
