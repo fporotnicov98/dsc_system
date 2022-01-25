@@ -39,6 +39,9 @@ const CommitsTab = ({ commits }) => {
               variant="contained"
               size="small"
               className='bg-green mr-3'
+              onClick={() => {
+                setOpen(false)
+              }}
             >
               Принять изменения
             </Button>
