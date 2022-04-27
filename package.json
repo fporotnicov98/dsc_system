@@ -24,7 +24,6 @@
     "dayjs": "^1.10.7",
     "echarts": "^4.8.0",
     "echarts-for-react": "^2.0.16",
-    "eslint": "^8.7.0",
     "firebase": "^8.10.0",
     "formik": "^2.1.5",
     "globalize": "^0.1.1",
